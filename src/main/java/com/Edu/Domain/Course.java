@@ -1,4 +1,3 @@
-
 package com.Edu.Domain;
 
 import javax.persistence.Entity;
@@ -6,17 +5,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import org.apache.ibatis.type.Alias;
-/*
-import org.springframework.data.annotation.Id;
-*/
+
 import lombok.Data;
 
 @Entity
-@Alias("Board")
-public @Data class Board {
+@Alias("course")
+public @Data class Course {
 	
 	@Id
-	@GeneratedValue
-	private int boardId;
-	
+    @GeneratedValue
+	private int cosno;	
+	private String cosname;
+	private String cosintro;
+	private String cosintrovideo;
+	private String coscategory;
 }
