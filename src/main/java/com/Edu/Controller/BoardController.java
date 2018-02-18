@@ -23,6 +23,12 @@ public class BoardController {
 	@Autowired
 	private EtcDao etcDao;
 	
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public String register(){
+		return "register";
+	}
+	
+	
 	@RequestMapping(value = "/board/{boardId}", method = RequestMethod.GET)
 	public String Board(@PathVariable int boardId, ModelAndView mav){
 //		boardService.getCode("");
