@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.baron.member.smsModel">
+<mapper namespace="com.Edu.Dao.smsMapper">
 
-	<insert id="notifiRent" parameterType="SmsModel">
+	<insert id="notifiRent" parameterType="Sms">
 		INSERT INTO
 		SC_TRAN
 		(TR_SENDDATE , TR_SENDSTAT ,TR_MSGTYPE
@@ -15,7 +15,7 @@
 
 	</insert>
 
-	<insert id="notifiReser" parameterType="SmsModel">
+	<insert id="notifiReser" parameterType="Sms">
 		INSERT INTO
 		SC_TRAN
 		(TR_SENDDATE , TR_SENDSTAT ,TR_MSGTYPE ,TR_PHONE
@@ -26,7 +26,7 @@
 		'예약하신 도서 [ '+#{title}+' ] 대여가능합니다.' )
 
 	</insert>
-	<insert id="returnConfirm" parameterType="SmsModel">
+	<insert id="returnConfirm" parameterType="Sms">
 		INSERT INTO
 		SC_TRAN
 		(TR_SENDDATE , TR_SENDSTAT ,TR_MSGTYPE ,TR_PHONE
@@ -38,7 +38,7 @@
 
 	</insert>
 
-	<insert id="notifiReturn" parameterType="SmsModel">
+	<insert id="notifiReturn" parameterType="Sms">
 		INSERT INTO
 		SC_TRAN
 		(TR_SENDDATE , TR_SENDSTAT ,TR_MSGTYPE ,TR_PHONE
@@ -54,7 +54,7 @@
 
 	</insert>
 
-	<insert id="notifiReq" parameterType="SmsModel">
+	<insert id="notifiReq" parameterType="Sms">
 		INSERT INTO
 		SC_TRAN
 		(TR_SENDDATE , TR_SENDSTAT ,TR_MSGTYPE ,TR_PHONE
@@ -66,7 +66,7 @@
 
 
 	</insert>
-	<insert id="notifiExtend" parameterType="SmsModel">
+	<insert id="notifiExtend" parameterType="Sms">
 		INSERT INTO
 		SC_TRAN
 		(TR_SENDDATE , TR_SENDSTAT ,TR_MSGTYPE ,TR_PHONE
