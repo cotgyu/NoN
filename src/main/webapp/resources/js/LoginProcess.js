@@ -1,12 +1,11 @@
-/**
- * 
- */
 $(document).ready(function() {
 	//로그인및 각종 버튼에 대한 자바스크립트 입니다.
 	//로그인 버튼
-	$("#login-nav").submit(function(e){
+	
+	$("#login-form").submit(function(e){
 		id = $("#loginFormUserId").val();
 		pass= $("#loginFormUserPass").val();
+		
 		if(id.length <= 0){
 			$('.modal-header').text(' 로그인 오류 ');
 			$('.modal-body').text('아이디를 입력해 주세요.');
@@ -24,24 +23,25 @@ $(document).ready(function() {
 			url:"forgotPass.ajax",
 			type:"get",
 			data:"id="+id + "&pass="+pass,
-			dataType:"json",
 			success:function(data){
-				if(data!=null){
+				console.log("응답 : " + data);
+				if(data){
 					if(pass==data.pass){
-						
 						$('.modal-header').text(' 로그인 성공 ');
 						$('.modal-body').text("[" + id + "]" + "님 환영합니다.");
 						$('#exampleModal').modal('show');						
-						location.href="index.mvc";						
+						location.href="index";						
 					}
 					else{
+						console.log("else : " + data);
+						alert("2");
 						$('.modal-header').text(' 로그인 오류 ');
 						$('.modal-body').text('비밀번호가 일치하지 않습니다.');
 						$('#exampleModal').modal('show');
 						return false;
 					}
 				}
-				else{
+				else{					
 					$('.modal-header').text(' 로그인 오류 ');
 					$('.modal-body').text('입력하신 ID가 존재하지 않습니다.');
 					$('#exampleModal').modal('show');
@@ -52,14 +52,18 @@ $(document).ready(function() {
 				alert("error :" + xhr.statusText + " ," + status + " ," + error);
 			}
 		});
+		// submit라 다 되고서 서브밋되어서 그래
+		return false;
 		
 	});
 	
 	//로그아웃 눌렀을때
-	$("#loginFormLogout").click(function() {
+	$("#logout").click(function() {
 		var result = confirm("로그아웃 하시겠습니까?");
 		if (result) {
+			location.href="https://kapi.kakao.com/v1/user/unlink";
 			return true;
+			
 		} 
 		else {
 			return false;
@@ -96,14 +100,13 @@ $(document).ready(function() {
 			// console.log("잘못된 아이디 형식");
 			return;
 		}
+		var ajaxdata = "id="+id;
 		$.ajax({
 			url : "dupleCheck.ajax",
 			type : "get",
-			data : "id=" + id,
+			data : ajaxdata,
 			success : function(responseData) {
-				var obj = eval("("+ responseData+ ")");
-				console.log("obj"+ obj);
-				if (obj.message == 'success') {
+				if (responseData.result) {
 					$("#idFlag").text("[ "+id+" ]"+" "+'는 사용가능한 ID입니다.');
 					$("#idFlag").css({color : "green"});
 					$('<i class="fa fa-circle-o" id="idFlagIcon" ></i>').prependTo('#idFlag');
@@ -114,7 +117,6 @@ $(document).ready(function() {
 					$(".modal-header").text("ID 입력 실패" );
 					$(".modal-body").text("[ "+id+" ]"+" "+ "는 중복된 ID 입니다." );
 					$('#exampleModal').modal('show');
-					/*alert("[ "+id+" ]"+" "+ "is Duplicate ID");*/
 					
 					$("#idFlag").text("[ "+id+" ]"+" "+ "는 중복된 ID입니다.");
 					$("#idFlag").css({color : "red"});
@@ -122,12 +124,9 @@ $(document).ready(function() {
 					$("#joinId").focus().val("");
 					idBoolean=true;
 				}
-				// console.log("돌아온 값 :
-				// " + obj.id + ", " +
-				// this);
 			},
 			error : function(x, y, z) {
-					alert("안되네요..." + z);
+					alert("자스안에 dupleCheck ajax 에러" + z);
 			}
 		});
 
@@ -171,16 +170,14 @@ $(document).ready(function() {
 			// console.log("잘못된 아이디 형식");
 			return;
 		}
-		
+		var ajaxdata = "nick="+nick;
 		console.log("nick = " + nick);
 		$.ajax({
 			url : "dupleCheck.ajax",
 			type : "get",
-			data : "nick=" + nick,
+			data : ajaxdata,
 			success : function(responseData) {
-				var obj = eval("("+ responseData+ ")");
-				console.log("obj"+ obj);
-				if (obj.message == 'success') {
+				if (responseData.result) {
 					$("#nickFlag").text("[ "+nick+" ]"+" "+ "는 사용가능한 닉네임 입니다.");
 					$("#nickFlag").css({color : "green"});
 					$('<i class="fa fa-circle-o"></i>').prependTo('#nickFlag');
@@ -249,16 +246,17 @@ $(document).ready(function() {
 			$("#email2").focus().val("");
 			return false;
 		}
+		
 		$("#emailFlag").text("[ "+email1 + " @ " + email2+" ]"+ '로 이메일 인증이 진행중입니다.');
+		
 		$("#btnEmailCode").prop('disabled',true);
+		
 		$.ajax({
 			url:"emailCheck.ajax",
 			type:"get",
 			data:"email1="+email1+"&email2="+email2,
 			success:function(responseData){
-				
-				var obj = eval("("+ responseData+ ")");
-				var authNum=obj.authNum;
+				var authNum=responseData.authNum;
 				console.log("여기는 오는가???? authNum : " + authNum);
 				$parent.append('<input type="text" style="width:150px;" class="form-control" name="authNum" id="authNum" size="5" placeholder="인증번호 입력"/>');
 				//.prependTo('#btnEmailCode');
@@ -328,6 +326,7 @@ $(document).ready(function() {
 		    					passBoolean = true;
 		    				}
 		    				else{
+		    					console.log(pass+","+cpass);
 		    					$(".modal-header").text("비밀번호 확인 실패" );
 								$(".modal-body").text("비밀번호 확인이 맞지 않습니다. 다시 입력해주세요.");
 								$('#exampleModal').modal('show');
@@ -498,9 +497,8 @@ $(document).ready(function() {
 										$(".modal-header").text(" 회원 가입 완료  " );
 										 $(".modal-body").text("회원가입이 정상적으로 처리되었습니다. 로그인해주세요.");
 										 $('#exampleModal').modal('show');
-										 
-										
-										document.joinC.action = "joinResult.mvc";
+										 		
+										document.joinC.action = "joinResult";
 										document.joinC.submit();
 									}
 									else{
@@ -694,8 +692,7 @@ $(document).ready(function() {
 			data:"email1="+email1+"&email2="+email2,
 			success:function(responseData){
 				$("#emailFlag").text("[ "+email1 + " @ " + email2+" ]"+ '이메일 인증이 진행중입니다. 잠시만 기다려주세요.');
-				var obj = eval("("+ responseData+ ")");
-				var authNum=obj.authNum;
+				var authNum=responseData.authNum;
 				console.log("여기는 오는가???? authNum : " + authNum);
 				$parent.append('<input type="text" style="width:80px;" class="form-control" name="u_authNum" id="u_authNum" size="5" placeholder="Check Your Email"/>');
 				//.prependTo('#btnEmailCode');
@@ -907,8 +904,8 @@ $(document).ready(function() {
 									data:"email1="+email1+"&email2="+email2,
 									success:function(responseData){
 										$("#emailFlag").text("[ "+email+" ]"+ '이메일 인증이 진행중입니다. 잠시만 기다려주세요.');
-										var obj = eval("("+ responseData+ ")");
-										var authNum=obj.authNum;
+										
+										var authNum=responseData.authNum;
 										console.log("여기는 오는가???? authNum : " + authNum);
 										$parent.slideDown(2000).append('<input type="text" style="width:150px;" class="form-control" name="authNum" id="authNum" size="5" placeholder="인증번호 입력"/>');
 										//.prependTo('#btnEmailCode');
@@ -1034,85 +1031,6 @@ $(document).ready(function() {
 		}
 		
 	});
-	
-/*	//모달 창 제어 자바스크립트
-	$('#exampleModal').on('show.bs.modal', function (event) {
-		  var button = $(event.relatedTarget) // Button that triggered the modal
-		  var recipient = button.data('whatever')
-		  
-		  var modal = $(this)
-		  modal.find('.modal-title').text('New message to ' + recipient)
-		  modal.find('.modal-body').text("sadasdasdasdasd")
-		})*/
-	
-	
-	
-	
-	
-					/*
-					 * 
-		$("#nameFlag").fadeOut(3000);
-		
-		$("#nameFlag").text("이메일 인증을 통해 비밀번호 찾기를 실행해 주세요.").fadeIn(3000);
-		$("#idFlag").css({color : "green"});
-		$("#nameFlag").css({color : "green"});
-		
-		$('<i class="fa fa-circle-o"></i>').prependTo('#nameFlag');
-					 * function emailcheck(email1,email2){ //유효성 검사
-					 * if(!joinC.email1.value||!joinC.email2.value){
-					 * alert("emailerror1"); joinC.email1.focus(); return;
-					 * }else{ if(joinC.email1.value){
-					 * console.log(joinC.email1.value);
-					 * if(joinC.email2.value==0){ //직접입력부분
-					 * if(joinC.email1.value.indexOf("@")==-1){
-					 * alert("emailerror2"); joinC.email1.focus(); return false; }
-					 * 
-					 * }else{ //선택입력 if(joinC.email1.value.indexOf("@")!=-1){
-					 * alert("emailerror3"); joinC.email1.focus(); return false; } } } }
-					 * //인증을 위해 새창으로 이동 var
-					 * url="emailCheck.jsp?email1="+email1+"&email2="+email2;
-					 * open(url,"emailwindow","statusbar=no,scrollbar=no,menubar=no,width=400,heigth=200"); }
-					 * 
-					 * 
-					 * 
-					 * //function emailcheck 끝 (이메일 유효성검사)
-					 */
-					
-
-				/*	$("#loginFormLogin").click(function() {
-						var user_id = document.loginC.L_id.value;
-						var user_pass = document.loginC.value;
-						// var
-						// user_id=document.getElementById("loginFormUserId").value;
-						// var
-						// user_pass=document.getElementById("loginFormUserPass").value;
-						// alert(user_id+"<br/>"+user_pass);
-						regId = /^[가-힣a-zA-Z0-9]{5,20}$/;
-						regPass = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]{4,30}$/;
-						if (regId.test(user_id) && regPass.test(user_pass)) {
-							document.loginC.action = "login.do";
-							document.loginC.submit();
-						} else if (regPass.test(user_pass)) {
-							alert("잘못된 아이디 형식입니다. 다시 입력해주세요");
-							location.reload();
-						} else {
-							alert("잘못된 비밀번호 형식입니다. 다시 입력해주세요");
-							location.reload();
-						}
-					});
-*/
-/*					
-*/
-					/*$(".loginFormJoin").click(function() {
-						document.loginC.action = "joinForm.do";
-						document.loginC.submit();
-					});
-					$(".loginFormUpdate").click(function() {
-						document.loginC.action = "update.do";
-						document.loginC.submit();
-					});*/
-
-	
 
 });// 맨위상단 끝
 
@@ -1262,73 +1180,3 @@ function u_findZipCode() {
 		}
 	}).open();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
- * $("#joinId").change(function(e){ console.log("joinId change : ")
- * e.stopPropagation();
- * 
- * var id=$("#joinId").val(); regId=/^[가-힣a-zA-Z0-9]{5,20}$/; //유효성 검사.
- * 
- * if(regId.test(id)){ } else {
- * 
- * $("#idFlag").text('Wrong Id'); $("#idFlag").css({color:"red"}); $('<i
- * class="fa fa-times"></i>').prependTo('#idFlag');
- * //$("#joinId").focus().val(""); alert("잘못된 아이디 형식입니다. 다시 입력해주세요 \n
- * 영어,알파벳,숫자조합으로 5자부터 20자사이"); return; }//위에가 유효성검사를 하고 성공하면 이프문타고내려와서 바로중복검사까지
- * 하게해놧어요 console.log("df"); $.ajax({ url:"dupleCheck.ajax", type:"get",
- * data:"id="+id, success:function(responseData){ var obj = eval("(" +
- * responseData + ")"); console.log("obj" + obj); if(obj.message == 'success') {
- * $("#idFlag").text(' Success Id'); $("#idFlag").css({color:"green"}); $('<i
- * class="fa fa-circle-o" id="idFlagIcon" ></i>').prependTo('#idFlag'); } else {
- * alert("중복된 아이디 입니다."); $("#idFlag").text(' Duplicate Id');
- * $("#idFlag").css({color:"red"}); $('<i class="fa fa-times"></i>').prependTo('#idFlag');
- * $("#joinId").focus().val(""); } //console.log("돌아온 값 : " + obj.id + ", " +
- * this); }, error:function(x,y,z){ alert("안되네요..." +z); }
- * 
- * });
- * 
- * //document.joinC.action="duplicateCheck.do"; //document.joinC.submit(); });
- */
-
-/*
- * 이메일 인증 및 유효성 검사 function emailcheck(email1,email2){ //유효성 검사
- * if(!joinC.email1.value||!joinC.email2.value){ alert("emailerror1");
- * joinC.email1.focus(); return; }else{ if(joinC.email1.value){
- * console.log(joinC.email1.value); if(joinC.email2.value==0){ //직접입력부분
- * if(joinC.email1.value.indexOf("@")==-1){ alert("emailerror2");
- * joinC.email1.focus(); return false; }
- * 
- * }else{ //선택입력 if(joinC.email1.value.indexOf("@")!=-1){ alert("emailerror3");
- * joinC.email1.focus(); return false; } } } } //인증을 위해 새창으로 이동 var
- * url="emailCheck.jsp?email1="+email1+"&email2="+email2;
- * open(url,"emailwindow","statusbar=no,scrollbar=no,menubar=no,width=400,heigth=200"); }
- * 
- * 
- * 
- * //function emailcheck 끝 (이메일 유효성검사)
- */
