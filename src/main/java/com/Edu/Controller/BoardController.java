@@ -15,6 +15,7 @@ import com.Edu.Service.BoardService;
 import com.Edu.Service.EtcService;
 
 @Controller
+@RequestMapping("/board/")
 public class BoardController {    
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
  
