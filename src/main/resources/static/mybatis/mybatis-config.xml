@@ -17,5 +17,10 @@
 		<typeAlias type="com.Edu.Domain.Code" alias="Code" />
 <!-- 		<typeAlias type="com.Edu.Domain.ItDamage" alias="ItDamage" /> -->
 <!-- 		<typeAlias type="com.Edu.Domain.Approval" alias="Approval" /> -->
+
+
+<!-- course -->
+<typeAlias type="com.Edu.Domain.Course" alias="Course" />
+<typeAlias type="com.Edu.Domain.Lecture" alias="Lecture" />
 	</typeAliases>
 </configuration>
