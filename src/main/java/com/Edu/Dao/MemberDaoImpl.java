@@ -1,13 +1,12 @@
 package com.Edu.Dao;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.teamsearch.project02.domain.Member;
+import com.Edu.Domain.Member;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
@@ -15,7 +14,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	private final String NAME_SPACE = "com.teamsearch.project02.mappers.MemberMapper";
+	private final String NAME_SPACE = "com.Edu.mapper.MemberMapper";
 	
 	@Override
 	public Member loginCheck(String id) {

@@ -1,9 +1,8 @@
 package com.Edu.Dao;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import com.teamsearch.project02.domain.Member;
+import com.Edu.Domain.Member;
 
 public interface MemberDao {
 
