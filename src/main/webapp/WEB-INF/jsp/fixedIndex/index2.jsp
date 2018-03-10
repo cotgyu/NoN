@@ -21,9 +21,9 @@
 <body>
 <!--wrapper-->
   <div id="wrapper">
-    <jsp:include="toggleSidebar.jsp"/>
-    <jsp:include="nav.jsp"/>
-    
+    <jsp:include page="nav.jsp"/>
+    <jsp:include page="toggleSidebar.jsp"/>/*toggle이 nav보다 위에 있을경우 에러날 수 있음*/
+ 
     <!--header-->
     <header class="bg-primary text-white" style="padding: 154px 0 100px;">
       <div class="container text-center">
@@ -32,14 +32,14 @@
       </div>
     </header>
      
-<jsp:include="menuButton"/>
+<jsp:include page ="menuButton.jsp"/>
 
     <!-- Page Contents -->
     <div class="container">
       <h1 class="my-4">강의 목록
         <h6>새로운 강의</h6>
       </h1>
-         <jsp:include page="lectureContents"/>
+         <jsp:include page="lectureContents.jsp"/>
           <!-- Pagination -->
           <ul class="pagination justify-content-center">
             <li class="page-item">

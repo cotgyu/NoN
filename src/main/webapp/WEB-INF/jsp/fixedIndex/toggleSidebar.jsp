@@ -1,12 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
+<!-- Sidebar -->
+		<div id="sidebar-wrapper">
+			<ul class="sidebar-nav">
+				<li class="sidebar-brand"><a href="#"> 강좌검색 </a></li>
+				<li><a href="#">분야별 강좌</a></li>
+				<li><a href="#">질문과 답변</a></li>
+				<li><a href="#">내 강좌</a></li>
+				<li><a href="#">질문과 답변</a></li>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Services</a></li>
+				<li><a href="#">Contact</a></li>
+			</ul>
+		</div>
+		<!-- /#sidebar-wrapper -->
 
-</body>
-</html>
+
