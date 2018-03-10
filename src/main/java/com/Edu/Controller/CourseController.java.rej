@@ -1,0 +1,21 @@
+diff a/src/main/java/com/Edu/Controller/CourseController.java b/src/main/java/com/Edu/Controller/CourseController.java	(rejected hunks)
+@@ -31,15 +31,14 @@
+ 		//cosno에 맞는 강좌들 불러오기
+ 		List<Lecture> lecture = courseService.findcos_lec(cosno);
+ 		
+-		//map에 정보 저장
++		//map에 정보 저장 
+ 		Map<String, Object> map = new HashMap<String, Object>();
+-		map.put("course", course); 
+-		map.put("lecture", lecture);
++		map.put("course",course);
++		map.put("lecture",lecture);
+ 		
+-		//modelandview에 map 저장 
++		//modelandView에 map저장
+ 		mav = new ModelAndView();
+ 		mav.addObject("map",map);
+-		
+ 		mav.setViewName("/course/introview");
+ 		
+ 		return mav;
