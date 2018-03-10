@@ -83,6 +83,7 @@
   </nav>
   <!--Navigation-->
 
+
     <!--header-->
     <header class="bg-primary text-white" style="padding: 154px 0 100px;">
       <div class="container text-center">
@@ -204,7 +205,7 @@
         </div>
         <!-- /.container -->
 
-      <!-- Footer -->
+           <!-- Footer -->
       <footer class="py-5 bg-dark">
         <div class="container">
           <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
@@ -212,10 +213,9 @@
         <!-- /.container -->
       </footer>
 
+
   </div>
   <!-- /#wrapper -->
-
-
 
 
 
