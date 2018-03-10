@@ -11,10 +11,5 @@ public class IndexController {
 
 		return "index";
 	}
-	@RequestMapping(value = "/index2")
-	public String index2(){
-
-		return "fixedIndex/index2";
-	}
 
 }
