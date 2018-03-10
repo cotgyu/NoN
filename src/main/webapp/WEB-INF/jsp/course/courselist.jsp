@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>player</title>
+<title>전체 코스 목록</title>
 <script>
 
 </script>
@@ -17,16 +17,11 @@
 <a href="/course/addcourse">코스 추가</a><br>
 <a href="/course/addlecture">강의 추가</a><br>
 <br>
+코스 목록 나열(링크 클릭 시 코스 소개)<br>
 
-강의제목:${lecture.lecname}
-<br>
-<iframe src="https://www.youtube.com/embed/${lecture.lecvideo}" height="500" width="800" allowfullscreen="allowfullscreen" name="fitvid0"></iframe>
-
-<br>강의목록<br>
-
-<c:forEach var="lec" items="${lecturelist}">
-<a href="/course/player/${lec.cosno}/${lec.lecno}">${lec.lecname}</a> &ensp;&ensp;  ${lec.lectime}<br>
-
+<c:forEach var="coslist" items="${courselist}">
+<a href="/course/intro/${coslist.cosno}">${coslist.cosname}</a><br>
 </c:forEach>
+
 </body>
 </html>

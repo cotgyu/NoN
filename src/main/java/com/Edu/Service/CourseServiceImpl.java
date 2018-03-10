@@ -13,20 +13,45 @@ import com.Edu.Domain.Lecture;
 @Service
 public class CourseServiceImpl implements CourseService{
 	@Autowired 
-	private CourseMapper courseDao;
+	private CourseMapper courseMapper;
 	@Autowired
 	private SqlSession sqlSession;
 	
 	//cosno에 맞는 코스 찾기
 	@Override
-	public Course findcos(int cosno) {
-		return courseDao.findcos(cosno);
+	public Course findCos(int cosno) {
+		return courseMapper.findCos(cosno);
 	}
 	
 	//cosno에 맞는 강좌들 찾기
 	@Override
-	public List<Lecture> findcos_lec(int cosno) {
-		return courseDao.findcos_lec(cosno);
+	public List<Lecture> findCos_lec(int cosno) {
+		return courseMapper.findCos_lec(cosno);
+	}
+
+	//lecno에 맞는 강좌 영상 가져오기 
+	@Override
+	public Lecture findLecVideo(int lecno) {
+		return courseMapper.findLecVideo(lecno);
+	}
+
+	//course리스트 불러오기 
+	@Override
+	public List<Course> findCosList() {
+		return courseMapper.findCosList();
+	}
+	
+	//새로운 course 추가
+	@Override
+	public void insertCourse(Course cos) {
+		courseMapper.insertCourse(cos);
+	}
+	
+	//새로운 lecture 추가
+	@Override
+	public void insertLecture(Lecture lecture) {
+		courseMapper.insertLecture(lecture);
+		
 	}
 	
 	

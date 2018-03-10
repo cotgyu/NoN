@@ -9,7 +9,15 @@ import com.Edu.Domain.Lecture;
 
 public interface CourseMapper {
 
-	Course findcos(int cosno);
+	Course findCos(int cosno);
 
-	List<Lecture> findcos_lec(int cosno);
+	List<Lecture> findCos_lec(int cosno);
+
+	Lecture findLecVideo(int lecno);
+
+	List<Course> findCosList();
+
+	void insertCourse(Course cos);
+
+	void insertLecture(Lecture lecture);
 }
