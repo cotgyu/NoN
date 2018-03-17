@@ -20,4 +20,6 @@ public interface CourseService {
 	public void insertCourse(Course cos);
 
 	public void insertLecture(Lecture lecture);
+
+	public List<Course> findCosCategory();
 }

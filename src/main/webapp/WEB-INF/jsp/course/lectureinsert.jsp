@@ -10,7 +10,7 @@
 <body>
 
 임시 메뉴 링크<br>
-<a href="/course/list">강의 목록</a><br>
+<a href="/course/list">코스 목록</a><br>
 <a href="/course/addcourse">코스 추가</a><br>
 <a href="/course/addlecture">강의 추가</a><br>
 <br>
@@ -19,7 +19,13 @@
 			<table>
 				<tr>
 					<td>코스 번호 </td>
-					<td><input name="cosno" id="cosno" style="width: 500px;"></td>
+					<td>
+						<select name="cosno" id="cosno">
+							<c:forEach var="coslist" items="${courselist}">	
+								<option value="${coslist.cosno}">${coslist.cosno}</option>	
+							</c:forEach>
+						</select>
+					</td>
 				</tr>
 				
 				<tr>
