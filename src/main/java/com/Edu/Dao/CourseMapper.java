@@ -20,4 +20,6 @@ public interface CourseMapper {
 	void insertCourse(Course cos);
 
 	void insertLecture(Lecture lecture);
+
+	List<Course> findCosCategory();
 }

@@ -41,6 +41,10 @@
 		VALUES (#{cosno}, #{lectime}, #{lecname}, #{lecvideo})
 	</insert>	
 	
-
+	<!-- 코스카테고리 가져오기 -->
+	<select id="findCosCategory" resultType="Course">
+		SELECT DISTINCT coscategory FROM course 
+	</select>
+	
 
 </mapper>

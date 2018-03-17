@@ -53,6 +53,11 @@ public class CourseServiceImpl implements CourseService{
 		courseMapper.insertLecture(lecture);
 		
 	}
+
+	@Override
+	public List<Course> findCosCategory() {
+		return courseMapper.findCosCategory();
+	}
 	
 	
 

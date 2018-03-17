@@ -83,13 +83,17 @@ public class CourseController {
 	}
 		
 	
-	//todo - 카테고리 선택창 만들기 , insert 한글깨짐, 등록 실패시 오류 페이지 만들기? 
+	//todo - insert 한글깨짐, 등록 실패시 오류 페이지 만들기? 
 	//코스 추가 창 이동
 	@RequestMapping(value = "/addcourse", method = RequestMethod.GET)
 	public ModelAndView AddCourse( ModelAndView mav){
+		//카테고리를 가져오기 위한 코스 불러오기 
+		List<Course> courseList = courseService.findCosCategory();
 		
 		//modelandview에 정보 저장 
 		mav = new ModelAndView();
+		mav.addObject("courselist",courseList);
+		
 		mav.setViewName("/course/courseinsert");
 				
 		return mav;
@@ -100,18 +104,22 @@ public class CourseController {
 		
 		courseService.insertCourse(cos);
 		
-				
 		return "redirect:/course/list";
 	}
 	
 	
-	//todo - 코스 번호 선택창 만들기 , 등록 실패시 오류 페이지 만들기?
+	//todo - 등록 실패시 오류 페이지 만들기?
 	//강의 추가 창 이동
 	@RequestMapping(value = "/addlecture", method = RequestMethod.GET)
 	public ModelAndView AddLecture( ModelAndView mav){
 		
+		//코스번호를 가져오기 위한 코스 불러오기 
+		List<Course> courseList = courseService.findCosList();
+		
 		//modelandview에 정보 저장 
 		mav = new ModelAndView();
+		mav.addObject("courselist",courseList);	
+		
 		mav.setViewName("/course/lectureinsert");
 				
 		return mav;
