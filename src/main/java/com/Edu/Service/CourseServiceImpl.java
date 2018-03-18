@@ -54,6 +54,7 @@ public class CourseServiceImpl implements CourseService{
 		
 	}
 
+	//코스 카테고리 불러오기
 	@Override
 	public List<Course> findCosCategory() {
 		return courseMapper.findCosCategory();
