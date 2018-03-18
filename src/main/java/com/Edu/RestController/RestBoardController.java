@@ -1,22 +1,21 @@
-package com.Edu.Controller;
+package com.Edu.RestController;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.Edu.Dao.EtcMapper;
 import com.Edu.Domain.Board;
 import com.Edu.Service.BoardService;
 import com.Edu.Service.EtcService;
 
-@Controller
+@RestController
 @RequestMapping("/board/")
-public class BoardController {    
+public class RestBoardController {    
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
  
 	@Autowired
@@ -24,17 +23,20 @@ public class BoardController {
 
 	@Autowired
 	private EtcService etcService;	
-
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String getBoardForm(){
-		return "board/board";
+	
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public void register(Board board){
+		boardService.create(board);
 	}
 	
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String getRegisterForm(){
-		return "register";
-	}
 	
+	@RequestMapping(value = "/{boardId}", method = RequestMethod.GET)
+	@ResponseBody
+	public Board getBoard(@PathVariable String boardId){
+		int parameterBoardId = Integer.parseInt(boardId);
+		return boardService.findOne(parameterBoardId);
+	}
+//	
 //	@RequestMapping(value = "/board/add", method = RequestMethod.POST)
 //	public void Board(Board board ){
 //		boardService.create(board);
