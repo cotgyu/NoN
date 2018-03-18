@@ -87,12 +87,13 @@ public class CourseController {
 	//코스 추가 창 이동
 	@RequestMapping(value = "/addcourse", method = RequestMethod.GET)
 	public ModelAndView AddCourse( ModelAndView mav){
-		//카테고리를 가져오기 위한 코스 불러오기 
-		List<Course> courseList = courseService.findCosCategory();
+		
+		//카테고리를 가져오기
+		List<Course> courseCategory = courseService.findCosCategory();
 		
 		//modelandview에 정보 저장 
 		mav = new ModelAndView();
-		mav.addObject("courselist",courseList);
+		mav.addObject("coursecategory",courseCategory);
 		
 		mav.setViewName("/course/courseinsert");
 				

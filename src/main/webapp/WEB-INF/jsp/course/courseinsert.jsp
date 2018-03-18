@@ -56,8 +56,8 @@
 					<td>코스 카테고리</td>
 					<td>
 						<select name="selectcategory" id="selectcategory" onChange="selectcoscategory(this.value);">
-							<c:forEach var="coslist" items="${courselist}">	
-								<option value="${coslist.coscategory}">${coslist.coscategory}</option>	
+							<c:forEach var="coscate" items="${coursecategory}">	
+								<option value="${coscate.coscategory}">${coscate.coscategory}</option>	
 							</c:forEach>
 							<option selected value="0">카테고리 직접 입력</option>
 						</select>
