@@ -23,7 +23,7 @@ public class RestCourseController {
 	public Course getCourse( ModelAndView mav, @PathVariable("cosno") int cosno){
 		
 		//cosno에 맞는 코스정보 불러오기
-		Course course = courseService.findcos(cosno);
+		Course course = courseService.findCos(cosno);
 		
 		
 		return course;
@@ -34,7 +34,7 @@ public class RestCourseController {
 	public List<Lecture> getLecture(  @PathVariable("cosno") int cosno){
 		 
 		//cosno에 맞는 강좌들 불러오기
-		List<Lecture> lecture = courseService.findcos_lec(cosno);
+		List<Lecture> lecture = courseService.findCos_lec(cosno);
 		
 		//map에 정보 저장 
 		

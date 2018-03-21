@@ -6,18 +6,45 @@
 
 
 	<!-- 코스 정보 불러오기 -->
-	<select id="findcos" resultType="Course">
+	<select id="findCos" resultType="Course">
 		SELECT *
 		FROM course where cosno = #{cosno}
 	</select>
 	
-	<!-- 코스번호에 맞는 강좌 불러오기 -->
-	<select id="findcos_lec" resultType="Lecture">
+	<!-- 코스번호에 맞는 강좌들 불러오기 -->
+	<select id="findCos_lec" resultType="Lecture">
 		SELECT *
 		FROM lecture where cosno = #{cosno}
 	</select>
-		
 	
-
+	<!-- 강좌번호에 맞는 강좌 불러오기 -->
+	<select id="findLecVideo" resultType="Lecture">
+		SELECT *
+		FROM lecture where lecno = #{lecno}
+	</select>
+	
+	<!-- 코스 리스트 가져오기 -->
+	<select id="findCosList" resultType="Course">
+		SELECT *
+		FROM course 
+	</select>
+	
+	<!-- 코스 등록하기 -->
+	<insert id="insertCourse">
+		INSERT INTO course (cosname, cosintro, cosintrovideo, coscategory) 
+		VALUES (#{cosname}, #{cosintro}, #{cosintrovideo}, #{coscategory})
+	</insert>
+		
+	<!-- 강좌 등록하기 -->
+	<insert id="insertLecture">
+		INSERT INTO lecture (cosno, lectime, lecname, lecvideo) 
+		VALUES (#{cosno}, #{lectime}, #{lecname}, #{lecvideo})
+	</insert>	
+	
+	<!-- 코스카테고리 가져오기 -->
+	<select id="findCosCategory" resultType="Course">
+		SELECT DISTINCT coscategory FROM course 
+	</select>
+	
 
 </mapper>

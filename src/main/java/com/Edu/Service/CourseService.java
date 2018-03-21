@@ -9,7 +9,17 @@ import com.Edu.Domain.Lecture;
 
 @Service
 public interface CourseService {
-	public Course findcos(int cosno);
+	public Course findCos(int cosno);
 	
-	public List<Lecture> findcos_lec(int cosno);
+	public List<Lecture> findCos_lec(int cosno);
+
+	public Lecture findLecVideo(int lecno);
+
+	public List<Course> findCosList();
+
+	public void insertCourse(Course cos);
+
+	public void insertLecture(Lecture lecture);
+
+	public List<Course> findCosCategory();
 }
