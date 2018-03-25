@@ -8,21 +8,24 @@
 <title>새로운 강의 추가</title>
 </head>
 <body>
+<div id="wrapper">
+<jsp:include page="/WEB-INF/jsp/course/Mynav.jsp"/>
+<jsp:include page="/WEB-INF/jsp/course/MytoggleSidebar.jsp"/>
 
-임시 메뉴 링크<br>
-<a href="/course/list">코스 목록</a><br>
-<a href="/course/addcourse">코스 추가</a><br>
-<a href="/course/addlecture">강의 추가</a><br>
-<br>
+<br><br>
+<jsp:include page ="/WEB-INF/jsp/course/MymenuButton.jsp"/>
+<br><br><br>
+<div class="container">
+
 
 <form id="addcourse" method="post" action="/course/insertlecture" enctype="multipart/form-data" method="${method}">
 			<table>
 				<tr>
-					<td>코스 번호 </td>
+					<td>코스 번호 / 코스 이름</td>
 					<td>
 						<select name="cosno" id="cosno">
 							<c:forEach var="coslist" items="${courselist}">	
-								<option value="${coslist.cosno}">${coslist.cosno}</option>	
+								<option value="${coslist.cosno}">${coslist.cosno} / ${coslist.cosname}</option>	
 							</c:forEach>
 						</select>
 					</td>
@@ -51,6 +54,8 @@
 				</tr>
 			</table>
 		</form>
-		
+		</div>
+<%@ include file="/WEB-INF/jsp/fixedIndex/footer.jsp" %>
+</div>
 </body>
 </html>

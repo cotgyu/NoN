@@ -1,8 +1,6 @@
 package com.Edu.Controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.Edu.Domain.Course;
@@ -48,6 +47,9 @@ public class CourseController {
 	@RequestMapping(value = "/player/{cosno}/{lecno}", method = RequestMethod.GET)
 	public ModelAndView Player( ModelAndView mav, @PathVariable("cosno") int cosno, @PathVariable("lecno") int lecno ){
 		
+		//cosno에 맞는 코스정보 불러오기
+		Course course = courseService.findCos(cosno);				
+		
 		//cosno에 맞는 강좌들 불러오기
 		List<Lecture> lecturelist = courseService.findCos_lec(cosno);
 		
@@ -57,6 +59,7 @@ public class CourseController {
 		
 		//modelandview에 정보 저장 
 		mav = new ModelAndView();
+		mav.addObject("course",course);
 		mav.addObject("lecturelist",lecturelist);
 		mav.addObject("lecture",lecture);
 				
@@ -67,20 +70,45 @@ public class CourseController {
 	
 	
 	//코스 리스트 불러오기
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView CourseList( ModelAndView mav){
-		
-		//모든 코스 가져오기 
-		List<Course> courseList = courseService.findCosList();
-		
+	@RequestMapping(value = "/list")
+	public ModelAndView CourseList( ModelAndView mav){		
+		//시간순으로 코스 가져오기(9개) 
+		List<Course> newCourseList = courseService.findNewCosList();
+				
+		//추천수 많은  코스 가져오기(9개) 
+		List<Course> popCourseList = courseService.findPopCosList();
+						
+		//카테고리 가져오기
+		List<Course> courseCategory = courseService.findCosCategory();
+				
 		//modelandview에 정보 저장 
 		mav = new ModelAndView();
-		mav.addObject("courselist",courseList);
-				
+		mav.addObject("newcourselist",newCourseList);
+		mav.addObject("popcourselist",popCourseList);
+		mav.addObject("coursecategory",courseCategory);
+		
 		mav.setViewName("/course/courselist");
 				
 		return mav;
 	}
+	
+	//검색한 코스 리스트 불러오기
+		@RequestMapping(value = "/searchlist")
+		public ModelAndView SearchCourseList( ModelAndView mav, @RequestParam(defaultValue="") String keyword){
+			
+			//모든 코스 가져오기 
+			List<Course> courseList = courseService.findCosList(keyword);
+			
+			//modelandview에 정보 저장 
+			mav = new ModelAndView();
+			mav.addObject("courselist",courseList);
+			mav.addObject("keyword", keyword);
+			
+			mav.setViewName("/course/course_searchlist");
+					
+			return mav;
+		}
+	
 		
 	
 	//todo - insert 한글깨짐, 등록 실패시 오류 페이지 만들기? 
@@ -88,7 +116,7 @@ public class CourseController {
 	@RequestMapping(value = "/addcourse", method = RequestMethod.GET)
 	public ModelAndView AddCourse( ModelAndView mav){
 		
-		//카테고리를 가져오기
+		//카테고리 가져오기
 		List<Course> courseCategory = courseService.findCosCategory();
 		
 		//modelandview에 정보 저장 
@@ -112,10 +140,10 @@ public class CourseController {
 	//todo - 등록 실패시 오류 페이지 만들기?
 	//강의 추가 창 이동
 	@RequestMapping(value = "/addlecture", method = RequestMethod.GET)
-	public ModelAndView AddLecture( ModelAndView mav){
+	public ModelAndView AddLecture( ModelAndView mav, @RequestParam(defaultValue="") String keyword){
 		
 		//코스번호를 가져오기 위한 코스 불러오기 
-		List<Course> courseList = courseService.findCosList();
+		List<Course> courseList = courseService.findCosList(keyword);
 		
 		//modelandview에 정보 저장 
 		mav = new ModelAndView();

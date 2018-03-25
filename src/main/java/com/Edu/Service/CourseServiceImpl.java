@@ -1,6 +1,8 @@
 package com.Edu.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +16,6 @@ import com.Edu.Domain.Lecture;
 public class CourseServiceImpl implements CourseService{
 	@Autowired 
 	private CourseMapper courseMapper;
-	@Autowired
-	private SqlSession sqlSession;
 	
 	//cosno에 맞는 코스 찾기
 	@Override
@@ -37,9 +37,25 @@ public class CourseServiceImpl implements CourseService{
 
 	//course리스트 불러오기 
 	@Override
-	public List<Course> findCosList() {
-		return courseMapper.findCosList();
+	public List<Course> findCosList(String keyword) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyword", keyword);
+		
+		return courseMapper.findCosList(map);
 	}
+	
+	//시간순으로 코스 불러오기
+	@Override
+	public List<Course> findNewCosList() {
+		return courseMapper.findNewCosList();
+	}
+
+	//추천수 많은 코스 가져오기
+	@Override
+	public List<Course> findPopCosList() {
+		return courseMapper.findPopCosList();
+	}
+	
 	
 	//새로운 course 추가
 	@Override
@@ -59,7 +75,8 @@ public class CourseServiceImpl implements CourseService{
 	public List<Course> findCosCategory() {
 		return courseMapper.findCosCategory();
 	}
-	
+
+
 	
 
 }
