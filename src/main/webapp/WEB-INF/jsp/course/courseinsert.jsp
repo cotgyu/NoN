@@ -28,12 +28,15 @@
 		}
 </script>
 <body>
+<div id="wrapper">
+<jsp:include page="/WEB-INF/jsp/course/Mynav.jsp"/>
+<jsp:include page="/WEB-INF/jsp/course/MytoggleSidebar.jsp"/>
 
-임시 메뉴 링크<br>
-<a href="/course/list">코스 목록</a><br>
-<a href="/course/addcourse">코스 추가</a><br>
-<a href="/course/addlecture">강의 추가</a><br>
-<br>
+<br><br>
+<jsp:include page ="/WEB-INF/jsp/course/MymenuButton.jsp"/>
+<br><br><br>
+<div class="container">
+
 
 <form id="addcourse" method="post" action="/course/insertcourse" enctype="multipart/form-data" method="${method}">
 			<table>
@@ -74,6 +77,8 @@
 				</tr>
 			</table>
 		</form>
-		
+		</div>
+<%@ include file="/WEB-INF/jsp/fixedIndex/footer.jsp" %>
+</div>
 </body>
 </html>
