@@ -15,14 +15,20 @@ public interface CourseService {
 
 	public Lecture findLecVideo(int lecno);
 
-	public List<Course> findCosList(String keyword);
+	public List<Course> findCosList(String searchOption, String keyword);
 
 	public void insertCourse(Course cos);
 
 	public void insertLecture(Lecture lecture);
 
-	public List<Course> findCosCategory();
-
+	public List<Course> findCosCategory1();
+	public List<Course> findCosCategory2();
+	
+	public List<Course> findProgrammingCategory();
+	public List<Course> findDesignCategory();
+	public List<Course> findBusinessCategory();
+		
+	
 	public List<Course> findNewCosList();
 
 	public List<Course> findPopCosList();

@@ -26,20 +26,27 @@
 				    <input name="keyword" value="${keyword}" placeholder="원하는 강좌를 입력해주세요!" style="width: 250px;">
 				    <button type="submit" class="btn">검색</button>
 				</form>
-				<!-- 코스 리스트 -->
-				<c:forEach var="coslist" items="${courselist}">
-					<a href="/course/intro/${coslist.cosno}">${coslist.cosname}</a>
-					<br>
-				</c:forEach>
 			</div>					
 			<br><br><br>
 					
 			<div>
-				<h3>"${keyword}" 검색 결과</h3>
+				<!-- 카테고리 검색일시 카테고리문구 표시 -->			
+				<c:choose>
+					<c:when test="${searchOption == 'coscategory2'}">
+						<h3>카테고리 "${keyword}" 검색 결과</h3>
+					</c:when>
+					<c:when test="${searchOption == 'coscategory1'}">
+						<h3>카테고리 "${keyword}" 검색 결과</h3>
+					</c:when>
+					<c:otherwise>
+						<h3>"${keyword}" 검색 결과</h3>	
+					</c:otherwise>
+				</c:choose>				
+				
 				<!-- 새로운 코스 리스트 -->
 				<div class="row">
 					<c:forEach var="coslist" items="${courselist}">
-						<div class="col-lg-4 col-sm-6 portfolio-item">
+						<div class="col-md-4 col-sm-4 portfolio-item">
 				              <div class="card h-100">
 				                <a href="/course/intro/${coslist.cosno}"><img class="card-img-top" src="/resources/courseImage/${coslist.cospicture}" alt=""></a>
 				                <div class="card-body">
@@ -48,7 +55,10 @@
 				                  </h4>
 				                </div>
 				              </div>
-				            </div>
+				        </div>
+				        <div class="col-md-8 col-sm-8 portfolio-item" style="border-top: 2px solid gray">
+				        	${coslist.cosintro}
+				        </div>
 					</c:forEach>
 				</div>
 			</div>
