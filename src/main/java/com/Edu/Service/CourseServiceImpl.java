@@ -37,8 +37,9 @@ public class CourseServiceImpl implements CourseService{
 
 	//course리스트 불러오기 
 	@Override
-	public List<Course> findCosList(String keyword) {
+	public List<Course> findCosList(String searchOption, String keyword) {
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchOption", searchOption);
 		map.put("keyword", keyword);
 		
 		return courseMapper.findCosList(map);
@@ -72,8 +73,24 @@ public class CourseServiceImpl implements CourseService{
 
 	//코스 카테고리 불러오기
 	@Override
-	public List<Course> findCosCategory() {
-		return courseMapper.findCosCategory();
+	public List<Course> findCosCategory1() {
+		return courseMapper.findCosCategory1();
+	}@Override
+	public List<Course> findCosCategory2() {
+		return courseMapper.findCosCategory2();
+	}
+
+	@Override
+	public List<Course> findProgrammingCategory() {
+		return courseMapper.findProgrammingCategory();
+	}
+	@Override
+	public List<Course> findDesignCategory() {
+		return courseMapper.findDesignCategory();
+	}
+	@Override
+	public List<Course> findBusinessCategory() {
+		return courseMapper.findBusinessCategory();
 	}
 
 

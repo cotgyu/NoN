@@ -12,8 +12,8 @@
 카테고리 선택 - 특정 카테고리 선택시 input창에 카테고리선택 값 입력하고 readonly로 변경
 			직접 입력시 input 값 비우고 readonly false로 변경 
  */
-	function selectcoscategory(value){
-		var obj = document.getElementById("coscategory");
+	function selectcoscategory1(value){
+		var obj = document.getElementById("coscategory1");
 		
 			if(value=="0"){
 					obj.value="";
@@ -26,6 +26,22 @@
 				
 				}
 		}
+	function selectcoscategory2(value){
+		var obj = document.getElementById("coscategory2");
+		
+			if(value=="0"){
+					obj.value="";
+					obj.readOnly=false;
+					obj.focus();
+				}
+			else{
+				obj.value=value;
+				obj.readOnly=true;
+				
+				}
+		}
+
+	
 </script>
 <body>
 <div id="wrapper">
@@ -56,19 +72,35 @@
 				</tr>
 				
 				<tr>
-					<td>코스 카테고리</td>
+					<td>코스 대표 카테고리</td>
 					<td>
-						<select name="selectcategory" id="selectcategory" onChange="selectcoscategory(this.value);">
-							<c:forEach var="coscate" items="${coursecategory}">	
-								<option value="${coscate.coscategory}">${coscate.coscategory}</option>	
+						<select name="selectcategory1" id="selectcategory1" onChange="selectcoscategory1(this.value);">
+							<c:forEach var="coscate1" items="${coursecategory1}">	
+								<option value="${coscate1.coscategory1}">${coscate1.coscategory1}</option>	
 							</c:forEach>
 							<option selected value="0">카테고리 직접 입력</option>
 						</select>
 						<br>
-						<input name="coscategory" id="coscategory" style="width: 500px;" ></input>
+						<input name="coscategory1" id="coscategory1" style="width: 500px;" ></input>
 					</td>
 				</tr>
-				
+				<tr>
+					<td>코스 상세 카테고리</td>
+					<td>
+						<select name="selectcategory2" id="selectcategory2" onChange="selectcoscategory2(this.value);">
+							<c:forEach var="coscate2" items="${coursecategory2}">	
+								<option value="${coscate2.coscategory2}">${coscate2.coscategory2}</option>	
+							</c:forEach>
+							<option selected value="0">카테고리 직접 입력</option>
+						</select>
+						<br>
+						<input name="coscategory2" id="coscategory2" style="width: 500px;" ></input>
+					</td>
+				</tr>
+				<tr>
+					<td>대표 이미지</td>
+					<td><input type="file" name="file" id="file"></td>
+				</tr>
 				
 				<tr>
 					<td colspan="2">
@@ -78,6 +110,9 @@
 			</table>
 		</form>
 		</div>
+		
+		
+	
 <%@ include file="/WEB-INF/jsp/fixedIndex/footer.jsp" %>
 </div>
 </body>

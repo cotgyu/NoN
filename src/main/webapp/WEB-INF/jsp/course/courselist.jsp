@@ -9,7 +9,115 @@
 <script>
 
 </script>
+<style>
+.menubar{
+border:none;
+border:0px;
+margin:0px;
+padding:0px;
+font: 67.5% "나눔고딕";
+font-size:20px;
+font-weight:bold;
+}
 
+.menubar ul{
+background: rgb(109,109,109);
+height:50px;
+list-style:none;
+margin:0;
+padding:0;
+}
+
+.menubar li{
+float:left;
+padding:0px;
+}
+
+.menubar li a{
+background: rgb(109,109,109);
+color:#cccccc;
+display:block;
+font-weight:normal;
+line-height:50px;
+margin:0px;
+padding:0px 25px;
+text-align:center;
+text-decoration:none;
+}
+
+.menubar li a:hover, .menubar ul li:hover a{
+background: rgb(71,71,71);
+color:#FFFFFF;
+text-decoration:none;
+}
+
+.menubar li ul{
+background: rgb(109,109,109);
+display:none; /* 평상시에는 드랍메뉴가 안보이게 하기 */
+height:auto;
+padding:0px;
+margin:0px;
+border:0px;
+position:absolute;
+width:200px;
+z-index:200;
+/*top:1em;
+/*left:0;*/
+}
+
+.menubar li:hover ul{
+display:block; /* 마우스 커서 올리면 드랍메뉴 보이게 하기 */
+}
+
+.menubar li li {
+background: rgb(109,109,109);
+display:block;
+float:none;
+margin:0px;
+padding:0px;
+width:200px;
+}
+
+.menubar li:hover li a{
+background:none;
+}
+
+.menubar li ul a{
+display:block;
+height:50px;
+font-size:14px;
+font-style:normal;
+margin:0px;
+padding:0px 10px 0px 15px;
+text-align:left;
+}
+
+.menubar li ul a:hover, .menubar li ul li:hover a{
+background: rgb(71,71,71);
+border:0px;
+color:#ffffff;
+text-decoration:none;
+}
+
+.menubar p{
+clear:left;
+}
+
+
+.star{
+width:80px;
+height:16px; 
+background:url('/resources/img/star.jpg') no-repeat -80px 0;
+}
+
+.star span{
+display:block;
+height:16px; 
+background:url('/resources/img/star.jpg') no-repeat left top;
+text-indent:-9999em;
+}
+
+</style>
 </head>
 <body>
 	<div id="wrapper">
@@ -19,8 +127,43 @@
 		<br>
 		<br>
 		<jsp:include page="/WEB-INF/jsp/course/MymenuButton.jsp" />
+			
+		
+		
 		<div class="container">
-			<!-- 코스 검색 -->						
+		<!-- 카테고리 표시  -->
+		
+			<div class="menubar">
+			<h3>강좌 카테고리</h3>
+			   <ul>
+			      
+			      <li><a href="/course/searchlist?searchOption=coscategory1&keyword=프로그래밍" id="current">프로그래밍</a>
+			         <ul>
+			           <c:forEach var="procategory" items="${programmingcategory}">
+			     		 <li><a href="/course/searchlist?searchOption=coscategory2&keyword=${procategory.coscategory2}">${procategory.coscategory2}</a></li>
+			      	   </c:forEach>
+			         </ul>
+			      </li>    
+			      <li><a href="/course/searchlist?searchOption=coscategory1&keyword=디자인/CG" id="current">디자인/CG</a>
+			         <ul>
+			           <c:forEach var="decategory" items="${designcategory}">
+			     		 <li><a href="/course/searchlist?searchOption=coscategory2&keyword=${decategory.coscategory2}">${decategory.coscategory2}</a></li>
+			      		</c:forEach>
+			         </ul>
+			      </li>
+			      <li><a href="/course/searchlist?searchOption=coscategory1&keyword=IT비즈니스" id="current">IT비즈니스</a>
+			         <ul>
+			           <c:forEach var="bucategory" items="${businesscategory}">
+			     		 <li><a href="/course/searchlist?searchOption=coscategory2&keyword=${bucategory.coscategory2}">${bucategory.coscategory2}</a></li>
+			      		</c:forEach>
+			         </ul>
+			      </li>
+			      
+			   </ul>
+			</div>
+			<br><br><br>
+		
+			<!-- 코스 or 카테고리 검색 -->						
 			<div class="searchMenu">
 				<form name="searchform" method="post" action="/course/searchlist">			     	
 				    <input name="keyword" value="${keyword}" placeholder="원하는 강좌를 입력해주세요!" style="width: 250px;">
@@ -29,16 +172,7 @@
 			</div>					
 			<br><br><br>
 			
-			<div>
-				<h3>강좌 카테고리</h3>
-				<!-- 카테고리 표시 
-				todo- 카테고리 선택시 카테고리에 선택되는 코스들만 표시하기 -->
-				<c:forEach var="coscategory" items="${coursecategory}">
-					<button type="button" class="btn btn-info" onClick="location.href='/course/searchlist?keyword=${coscategory.coscategory}'">${coscategory.coscategory}</button>
-				</c:forEach>
-			</div>
-			<br><br><br>
-			
+
 			<div>
 				<h3>새로운 강좌</h3>
 				<!-- 새로운 코스 리스트 -->
@@ -51,6 +185,39 @@
 				                  <h4 class="cardZ-title">
 				                    <a href="/course/intro/${newcoslist.cosno}">${newcoslist.cosname}</a>
 				                  </h4>
+				                  <!-- 수강평 점수 -->                
+				                  <c:choose>
+				                  	  <c:when test="${newcoslist.coseval == 0}">
+										  <div class='star'>
+						                  	<span style="width:0%"></span>
+						                  </div>
+									  </c:when>
+					                  <c:when test="${newcoslist.coseval == 1}">
+										  <div class='star'>
+						                  	<span style="width:20%"></span>
+						                  </div>
+									  </c:when>
+					                  <c:when test="${newcoslist.coseval == 2}">
+										  <div class='star'>
+						                  	<span style="width:40%"></span>
+						                  </div>
+									  </c:when>
+					                  <c:when test="${newcoslist.coseval == 3}">
+										  <div class='star'>
+						                  	<span style="width:60%"></span>
+						                  </div>
+									  </c:when>
+					                  <c:when test="${newcoslist.coseval == 4}">
+										  <div class='star'>
+						                  	<span style="width:80%"></span>
+						                  </div>
+									  </c:when>
+									  <c:when test="${newcoslist.coseval == 5}">
+										  <div class='star'>
+						                  	<span style="width:100%"></span>
+						                  </div>
+									  </c:when>               
+				                  </c:choose>
 				                </div>
 				              </div>
 				            </div>
@@ -60,7 +227,7 @@
 			<br><br><br>
 			
 			<div>
-				<h3>추천 강좌</h3>
+				<h3>인기 강좌</h3>
 				<!-- 인기 코스 리스트 -->
 				<div class="row">
 					<c:forEach var="popcoslist" items="${popcourselist}">			
@@ -71,6 +238,39 @@
 				                  <h4 class="cardZ-title">
 				                    <a href="/course/intro/${popcoslist.cosno}">${popcoslist.cosname}</a>
 				                  </h4>
+				                  <!-- 수강평 점수 -->                
+				                  <c:choose>
+				                  	  <c:when test="${popcoslist.coseval == 0}">
+										  <div class='star'>
+						                  	<span style="width:0%"></span>
+						                  </div>
+									  </c:when>
+					                  <c:when test="${popcoslist.coseval == 1}">
+										  <div class='star'>
+						                  	<span style="width:20%"></span>
+						                  </div>
+									  </c:when>
+					                  <c:when test="${popcoslist.coseval == 2}">
+										  <div class='star'>
+						                  	<span style="width:40%"></span>
+						                  </div>
+									  </c:when>
+					                  <c:when test="${popcoslist.coseval == 3}">
+										  <div class='star'>
+						                  	<span style="width:60%"></span>
+						                  </div>
+									  </c:when>
+					                  <c:when test="${popcoslist.coseval == 4}">
+										  <div class='star'>
+						                  	<span style="width:80%"></span>
+						                  </div>
+									  </c:when>
+									  <c:when test="${popcoslist.coseval == 5}">
+										  <div class='star'>
+						                  	<span style="width:100%"></span>
+						                  </div>
+									  </c:when>               
+				                  </c:choose>
 				                </div>
 				              </div>
 				            </div>	            

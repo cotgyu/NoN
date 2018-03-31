@@ -21,7 +21,13 @@ public interface CourseMapper {
 
 	void insertLecture(Lecture lecture);
 
-	List<Course> findCosCategory();
+	List<Course> findCosCategory1();
+	List<Course> findCosCategory2();
+	
+	List<Course> findProgrammingCategory();
+	List<Course> findDesignCategory();
+	List<Course> findBusinessCategory();
+	
 
 	List<Course> findNewCosList();
 

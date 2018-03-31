@@ -14,7 +14,8 @@ public @Data class Course {
 	private String cosname;
 	private String cosintro;
 	private String cosintrovideo;
-	private String coscategory;
+	private String coscategory1;
+	private String coscategory2;
 	private String cosregtime;
 	private String cospicture;
 	private int coseval;
@@ -45,12 +46,7 @@ public @Data class Course {
 	public void setCosintrovideo(String cosintrovideo) {
 		this.cosintrovideo = cosintrovideo;
 	}
-	public String getCoscategory() {
-		return coscategory;
-	}
-	public void setCoscategory(String coscategory) {
-		this.coscategory = coscategory;
-	}
+	
 	public String getCosregtime() {
 		return cosregtime;
 	}
@@ -70,12 +66,30 @@ public @Data class Course {
 		this.coseval = coseval;
 	}
 
+	public String getCoscategory1() {
+		return coscategory1;
+	}
+
+	public void setCoscategory1(String coscategory1) {
+		this.coscategory1 = coscategory1;
+	}
+
+	public String getCoscategory2() {
+		return coscategory2;
+	}
+
+	public void setCoscategory2(String coscategory2) {
+		this.coscategory2 = coscategory2;
+	}
+
 	@Override
 	public String toString() {
 		return "Course [cosno=" + cosno + ", cosname=" + cosname + ", cosintro=" + cosintro + ", cosintrovideo="
-				+ cosintrovideo + ", coscategory=" + coscategory + ", cosregtime=" + cosregtime + ", cospicture="
-				+ cospicture + ", coseval=" + coseval + "]";
+				+ cosintrovideo + ", coscategory1=" + coscategory1 + ", coscategory2=" + coscategory2 + ", cosregtime="
+				+ cosregtime + ", cospicture=" + cospicture + ", coseval=" + coseval + "]";
 	}
 	
+	
+
 	
 }

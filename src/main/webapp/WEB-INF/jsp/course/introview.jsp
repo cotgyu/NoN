@@ -48,7 +48,7 @@
 			<br><br><br><br><br><br>
 
 			<section id="eval">
-				<h4>수강후기(예정)</h4>
+				<h4>수강평(예정)</h4>
 			</section>
 			<br><br><br><br><br><br>
 		</div>
