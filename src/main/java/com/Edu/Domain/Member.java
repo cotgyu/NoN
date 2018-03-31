@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class Member {
 	private String name, id, pass, email, mobile,nick;
-	private String phone, zipcode, address1, address2,birth,gender;
+	private String phone, zipcode, address1, address2,birth,gender,profile_image;
 	private boolean emailGet;
 	private Timestamp regDate;
 	
@@ -97,5 +97,15 @@ public class Member {
 	public void setRegDate(Timestamp regDate) {
 		this.regDate = regDate;
 	}
+
+	public String getProfile_image() {
+		return profile_image;
+	}
+
+	public void setProfile_image(String profile_image) {
+		this.profile_image = profile_image;
+	}
+
+
 
 }

@@ -4,19 +4,46 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
-<!-- 부트스트랩 css -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<!-- Custom CSS -->
-<link type="text/css" rel="stylesheet" href="/resources/css/style.css">
-<!-- 제이쿼리,첫번째 그리고 부트스트랩 js -->
-<script src="js/jquery-1.11.3.min.js"></script>
-<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script src="/resources/js/LoginProcess.js"></script>
+<title>index page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>edu pjt_3-Col </title>
+  
+ <!-- Bootstrap -->
+  <link href="resources/plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link href="resources/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  
+  <!-- slick 1.8.0 -->
+  <link rel="stylesheet" type="text/css" href="resources/plugins/slick-1.8.0/slick/slick.css">
+  <link rel="stylesheet" type="text/css" href="resources/plugins/slick-1.8.0/slick/slick-theme.css">
+
+  
+  <!-- Fancy Box -->
+  <link href="resources/plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
+  <link href="resources/plugins/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+  <link href="resources/plugins/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css" rel="stylesheet">
+  
+  <!-- CUSTOM CSS -->
+  <link href="resources/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="resources/css/member/login.css"> 
+  
+  <!-- member js -->
+  <script src="resources/plugins/jquery/dist/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+ <script src="resources/js/LoginProcess.js"></script>
+  
+  <!-- 다음 이메일 -->
+  <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> 
+  
+  <!-- 카카오 로그인 -->
+  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+
 </head>
 <body>
 
@@ -334,11 +361,8 @@
 					<div class="form-group" id="join11" style="">
 						<label class="control-label col-sm-3">Info Email Get </label>
 						<div class="col-md-8 col-sm-9">
-							<label> <input name="emailGet" type="radio" value="true"
-								${member.emailGet?"checked":"" }> Yes
-							</label>     <label> <input name="emailGet" type="radio"
-								value="false" ${member.emailGet?"checked":"" }> No
-							</label>
+							<label> <input name="emailGet" type="radio" value="true"> Yes</label>     
+							<label> <input name="emailGet" type="radio" value="false"> No</label>
 						</div>
 					</div>
 					
@@ -448,6 +472,9 @@
 			</div>
 		</div>
 	</div>
+
+	
+
 
 
 </body>

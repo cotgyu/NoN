@@ -7,8 +7,8 @@
 		<setting name="defaultExecutorType" value="REUSE" />
 	</settings>
 	<typeAliases>
-<!-- 		<typeAlias type="com.Edu.Domain.Member" alias="Member" /> -->
 		<typeAlias type="com.Edu.Domain.Board" alias="Board" />
+		<typeAlias type="com.Edu.Domain.Member" alias="Member"/>
 <!-- 		<typeAlias type="com.Edu.Domain.Book" alias="Book" /> -->
 <!-- 		<typeAlias type="com.Edu.Domain.Content" alias="Content" /> -->
 <!-- 		<typeAlias type="com.Edu.Domain.Dto" alias="Dto" /> -->
