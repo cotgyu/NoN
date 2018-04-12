@@ -68,7 +68,7 @@
 				
 				<tr>
 					<td>코스소개 영상</td>
-					<td><textarea name="cosintrovideo" id="cosintrovideo" style="width: 500px; height: 100px;"></textarea></td>
+					<td><textarea name="cosintrovideo" id="cosintrovideo" placeholder="유튜브 영상주소를 입력해주세요" style="width: 500px; height: 100px;"></textarea></td>
 				</tr>
 				
 				<tr>

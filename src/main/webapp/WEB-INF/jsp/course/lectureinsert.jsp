@@ -43,7 +43,7 @@
 				
 				<tr>
 					<td>강좌 영상</td>
-					<td><textarea name="lecvideo" id="lecvideo" style="width: 500px; height: 100px;"></textarea></td>
+					<td><textarea name="lecvideo" id="lecvideo" placeholder="유튜브 영상주소를 입력해주세요" style="width: 500px; height: 100px;"></textarea></td>
 				</tr>
 				
 				

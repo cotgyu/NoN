@@ -11,20 +11,20 @@
   <!-- Bootstrap core CSS --> <!--toggle-->
   <link href="/resources/indexresource/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">  
   <!-- Custom styles for this template -->
-  <link href="/resources/indexresource/css/simple-sidebar.css" rel="stylesheet">
+  <link href="/resources/indexresource/css/simple-sidebar.css?ver=1.1" rel="stylesheet">
   <!-- Bootstrap core JavaScript -->
   <script src="/resources/indexresource/vendor/jquery/jquery.min.js"></script><!--toggle -->
   <script src="/resources/indexresource/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-</head>
+  </head>
 <body>
 <div id="wrapper">
 <!-- 강의 목록 -->
 	<div id="sidebar"><!-- 사이드부분  공간 처리 할것 -->
 		
-			<ul class="sidebar-nav">
-				<li class="sidebar-brand"></li> <!--  공백 처리 다시 할것 -->
+			<ul class="player-sidebar-nav">
+				<li class="player-sidebar-brand"></li> <!--  공백 처리 다시 할것 -->
 				
-				<li class="sidebar-brand">
+				<li class="player-sidebar-brand">
 					<h3>${course.cosname}</h3>
 				</li>
 				<c:forEach var="lec" items="${lecturelist}">
