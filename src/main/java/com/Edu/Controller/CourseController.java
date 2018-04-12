@@ -161,9 +161,35 @@ public class CourseController {
 		
 	    //폴더에 저장되는 이름으로 코스사진 이름 변경 
 	    cos.setCospicture(savedName);
-		
-		courseService.insertCourse(cos);
-		
+	    
+	    //대표영상 추가시 입력한 유뷰트 주소
+	  	String inputvideo = cos.getCosintrovideo();
+	  		
+	  	//영상 주소 속 watch?v= 부분 찾기
+	  	int front = inputvideo.indexOf("watch?v=");
+	  	//영상 주소 속 &부분 찾기
+	  	//&가 2개 들어가는 주소도 넣어봤는데 일단 정상적을 작동됨. 첫번째 부분만 기록이 되야함...
+	  	int back = inputvideo.indexOf("&");
+	  	//주소 길이 찾기
+	  	int all = inputvideo.length();
+	  		
+	  	//&이 없는 영상일 경우(indexof는 문자를 못찾으면 -1 반환)
+	  	if(back==-1){
+	  		//watch?v= 뒷부분 부터 주소 끝부분까지 자르기
+	  		String video = inputvideo.substring(front+8, all);
+	  		//바뀐 영상이름으로 다시 저장
+	  		cos.setCosintrovideo(video);
+	  		//수정된 lecture로 db에 입력
+	  		courseService.insertCourse(cos);	
+	  	}
+	  	//list에 있는 영상을 가져올 경우
+	  	else{
+	 		//watch?v= 뒷부분부터 & 전까지 자르기
+	  		String video = inputvideo.substring(front+8,back);
+	  		cos.setCosintrovideo(video);
+	  		courseService.insertCourse(cos);
+	  	}
+	    	    
 		return "redirect:/course/list";
 	}
 	
@@ -188,8 +214,33 @@ public class CourseController {
 	@RequestMapping(value = "/insertlecture", method = RequestMethod.POST)
 	public String InsertLecture( ModelAndView mav, @ModelAttribute Lecture lecture){
 		
-		courseService.insertLecture(lecture);
+		//강의 추가시 입력한 유뷰트 주소
+		String inputvideo = lecture.getLecvideo();
 		
+		//영상 주소 속 watch?v= 부분 찾기
+		int front = inputvideo.indexOf("watch?v=");
+		//영상 주소 속 &부분 찾기
+		//&가 2개 들어가는 주소도 넣어봤는데 일단 정상적을 작동됨. 첫번째 부분만 기록이 되야함...
+		int back = inputvideo.indexOf("&");
+		//주소 길이 찾기
+		int all = inputvideo.length();
+		
+		//&이 없는 영상일 경우(indexof는 문자를 못찾으면 -1 반환)
+		if(back==-1){
+			//watch?v= 뒷부분 부터 주소 끝부분까지 자르기
+			String video = inputvideo.substring(front+8, all);
+			//바뀐 영상이름으로 다시 저장
+			lecture.setLecvideo(video);
+			//수정된 lecture로 db에 입력
+			courseService.insertLecture(lecture);	
+		}
+		//list에 있는 영상을 가져올 경우
+		else{
+			//watch?v= 뒷부분부터 & 전까지 자르기
+			String video = inputvideo.substring(front+8,back);
+			lecture.setLecvideo(video);
+			courseService.insertLecture(lecture);
+		}
 		
 		return "redirect:/course/list";
 	}
