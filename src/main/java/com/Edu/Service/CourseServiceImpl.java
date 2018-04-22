@@ -31,8 +31,8 @@ public class CourseServiceImpl implements CourseService{
 
 	//lecno에 맞는 강좌 영상 가져오기 
 	@Override
-	public Lecture findLecVideo(int lecno) {
-		return courseMapper.findLecVideo(lecno);
+	public Lecture findLecture(int lecno) {
+		return courseMapper.findLecture(lecno);
 	}
 
 	//course리스트 불러오기 
@@ -91,6 +91,18 @@ public class CourseServiceImpl implements CourseService{
 	@Override
 	public List<Course> findBusinessCategory() {
 		return courseMapper.findBusinessCategory();
+	}
+
+	//코스 업데이트하기
+	@Override
+	public void updateCourse(Course cos) {
+		courseMapper.updateCourse(cos);
+	}
+	//강의 업데이트하기
+	@Override
+	public void updateLecture(Lecture lecture) {
+		courseMapper.updateLecture(lecture);
+		
 	}
 
 

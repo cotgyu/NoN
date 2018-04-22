@@ -13,7 +13,7 @@ public interface CourseService {
 	
 	public List<Lecture> findCos_lec(int cosno);
 
-	public Lecture findLecVideo(int lecno);
+	public Lecture findLecture(int lecno);
 
 	public List<Course> findCosList(String searchOption, String keyword);
 
@@ -32,4 +32,8 @@ public interface CourseService {
 	public List<Course> findNewCosList();
 
 	public List<Course> findPopCosList();
+
+	public void updateCourse(Course cos);
+
+	public void updateLecture(Lecture lecture);
 }

@@ -18,7 +18,7 @@
 	</select>
 	
 	<!-- 강좌번호에 맞는 강좌 불러오기 -->
-	<select id="findLecVideo" resultType="Lecture">
+	<select id="findLecture" resultType="Lecture">
 		SELECT *
 		FROM lecture where lecno = #{lecno}
 	</select>
@@ -88,6 +88,33 @@
 	<select id="findBusinessCategory" resultType="Course">
 		SELECT DISTINCT coscategory2 FROM course where coscategory1 = 'IT비즈니스'
 	</select>
+	
+	
+	<!-- 코스 수정하기 -->
+	<update id="updateCourse">
+		UPDATE course 
+		SET
+			cosname = #{cosname},
+			cosintro = #{cosintro},
+			cosintrovideo = #{cosintrovideo},
+			coscategory1 = #{coscategory1},
+			coscategory2 = #{coscategory2},
+			cospicture = #{cospicture}
+		WHERE cosno = #{cosno}
+	</update>
+	
+	<!-- 강좌 수정하기 -->
+	<update id="updateLecture">
+		UPDATE lecture 
+		SET
+			cosno = #{cosno},
+			lecname = #{lecname},
+			lectime = #{lectime},
+			lecvideo = #{lecvideo}
+			
+		WHERE lecno = #{lecno}
+	</update>
+	
 	
 
 </mapper>
