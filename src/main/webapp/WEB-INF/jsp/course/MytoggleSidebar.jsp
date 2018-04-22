@@ -14,6 +14,8 @@
 				<li><a href="#">Contact</a></li>
 				<li><a href="/course/addcourse">코스 추가</a></li>
 				<li><a href="/course/addlecture">강의 추가</a></li>
+				<li><a href="/course/modifycourse/12">코스 수정</a></li>
+				<li><a href="/course/modifylecture/12">강의 수정</a></li>
 				
 			</ul>
 		</div>

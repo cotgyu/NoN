@@ -13,7 +13,7 @@ public interface CourseMapper {
 
 	List<Lecture> findCos_lec(int cosno);
 
-	Lecture findLecVideo(int lecno);
+	Lecture findLecture(int lecno);
 
 	List<Course> findCosList(Map map);
 
@@ -32,4 +32,8 @@ public interface CourseMapper {
 	List<Course> findNewCosList();
 
 	List<Course> findPopCosList();
+
+	void updateCourse(Course cos);
+
+	void updateLecture(Lecture lecture);
 }
