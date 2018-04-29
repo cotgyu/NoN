@@ -11,10 +11,10 @@
 </head>
 <body ng-app='course'>
 	<div id="wrapper">
-		<jsp:include page="/WEB-INF/jsp/course/Mynav.jsp" />
-		<jsp:include page="/WEB-INF/jsp/course/MytoggleSidebar.jsp" />
+		<jsp:include page="/WEB-INF/jsp/fixedIndex/nav.jsp" />
+		<jsp:include page="/WEB-INF/jsp/fixedIndex/toggleSidebar.jsp" />
 		<br><br>
-		<jsp:include page="/WEB-INF/jsp/course/MymenuButton.jsp" />		
+		<jsp:include page="/WEB-INF/jsp/fixedIndex/menuButton.jsp" />		
 		<div class="container">
 			<h3>${course.cosname}</h3>
 			<!-- <button type="submit" id="subscribe" onclick="javascript_:openPlayer()" class="btn btn-default" >수강하기</button> -->

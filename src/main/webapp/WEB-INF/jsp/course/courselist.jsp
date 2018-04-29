@@ -121,12 +121,12 @@ text-indent:-9999em;
 </head>
 <body>
 	<div id="wrapper">
-		<jsp:include page="/WEB-INF/jsp/course/Mynav.jsp" />
-		<jsp:include page="/WEB-INF/jsp/course/MytoggleSidebar.jsp" />
+		<jsp:include page="/WEB-INF/jsp/fixedIndex/nav.jsp" />
+		<jsp:include page="/WEB-INF/jsp/fixedIndex/toggleSidebar.jsp" />
 
 		<br>
 		<br>
-		<jsp:include page="/WEB-INF/jsp/course/MymenuButton.jsp" />
+		<jsp:include page="/WEB-INF/jsp/fixedIndex/menuButton.jsp" />
 			
 		
 		
