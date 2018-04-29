@@ -218,9 +218,6 @@
   <!-- /#wrapper -->
 
 
-
-
-
   <!-- Bootstrap core JavaScript -->
   <script src="resources/indexresource/vendor/jquery/jquery.min.js"></script><!--toggle -->
   <script src="resources/indexresource/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
