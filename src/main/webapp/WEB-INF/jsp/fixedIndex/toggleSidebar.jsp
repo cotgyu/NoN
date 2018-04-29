@@ -5,13 +5,13 @@
 		<div id="sidebar-wrapper">
 			<ul class="sidebar-nav">
 				<li class="sidebar-brand"><a href="#"> 강좌검색 </a></li>
-				<li><a href="#">분야별 강좌</a></li>
+				<li><a href="/course/list">분야별 강좌</a></li>
 				<li><a href="#">질문과 답변</a></li>
 				<li><a href="#">내 강좌</a></li>
-				<li><a href="#">질문과 답변</a></li>
-				<li><a href="#">About</a></li>
-				<li><a href="#">Services</a></li>
-				<li><a href="#">Contact</a></li>
+				<li><a href="/course/addcourse">코스 추가</a></li>
+				<li><a href="/course/addlecture">강의 추가</a></li>
+				<li><a href="/course/modifycourse/12">코스 수정</a></li>
+				<li><a href="/course/modifylecture/12">강의 수정</a></li>		
 			</ul>
 		</div>
 		<!-- /#sidebar-wrapper -->
