@@ -22,5 +22,6 @@
 <!-- course -->
 <typeAlias type="com.Edu.Domain.Course" alias="Course" />
 <typeAlias type="com.Edu.Domain.Lecture" alias="Lecture" />
+<typeAlias type="com.Edu.Domain.CommentVO" alias="CommentVO"/>
 	</typeAliases>
 </configuration>

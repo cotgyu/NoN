@@ -9,7 +9,7 @@ public class IndexController {
 	@RequestMapping(value = "/index")
 	public String index(){
 
-		return "index";
+		return "fixedIndex/index";
 	}
 	@RequestMapping(value = "/index2")
 	public String index2(){
