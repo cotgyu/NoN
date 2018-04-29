@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>새로운 강의 추가</title>
+<title>${lecture.lecname} 강의 수정</title>
 </head>
 <body>
 <div id="wrapper">
@@ -18,7 +18,8 @@
 <div class="container">
 
 
-<form id="addcourse" method="post" action="/course/insertlecture" enctype="multipart/form-data" method="${method}">
+<form id="updatelecture" method="post" action="/course/updatelecture" enctype="multipart/form-data" method="${method}">
+			<input type="hidden" name="lecno" value="${lecture.lecno}">
 			<table>
 				<tr>
 					<td>코스 번호 / 코스 이름</td>
@@ -33,23 +34,25 @@
 				
 				<tr>
 					<td>강좌 이름</td>
-					<td><textarea name="lecname" id="lecname" style="width: 500px; height: 100px;"></textarea></td>
+					<td><textarea name="lecname" id="lecname" style="width: 500px; height: 100px;">${lecture.lecname}</textarea></td>
 				</tr>
 				
 				<tr>
 					<td>강좌 시간</td>
-					<td><textarea name="lectime" id="lectime" style="width: 500px; height: 100px;"></textarea></td>
+					<td><textarea name="lectime" id="lectime" style="width: 500px; height: 100px;">${lecture.lectime}</textarea></td>
 				</tr>
 				
 				<tr>
 					<td>강좌 영상</td>
-					<td><textarea name="lecvideo" id="lecvideo" placeholder="유튜브 영상주소를 입력해주세요" style="width: 500px; height: 100px;"></textarea></td>
+					<td><textarea name="lecvideo" id="lecvideo" placeholder="유튜브 영상주소를 입력해주세요" style="width: 500px; height: 100px;">
+					${lecture.lecvideo}
+					</textarea></td>
 				</tr>
 				
 				
 				<tr>
 					<td colspan="2">
-					<input type="submit" class="btn btn-default"  value="강좌 등록" /> 
+					<input type="submit" class="btn btn-default"  value="강좌 수정" /> 
 					<button type="button" class="btn btn-default" onClick="location.href='/course/list'">코스 목록으로</button>
 				</tr>
 			</table>

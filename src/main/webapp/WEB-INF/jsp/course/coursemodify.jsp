@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>새로운 코스 추가</title>
+<title>${course.cosname} 코스 수정</title>
 </head>
 <script type="text/javascript">
 /* 
@@ -54,21 +54,24 @@
 <div class="container">
 
 
-<form id="addcourse" method="post" action="/course/insertcourse" enctype="multipart/form-data" method="${method}">
+<form id="updatecourse" method="post" action="/course/updatecourse" enctype="multipart/form-data" method="${method}">
+			<input type="hidden" name="cosno" value="${course.cosno}">
 			<table>
 				<tr>
 					<td>코스 이름 </td>
-					<td><input name="cosname" id="cosname" style="width: 500px;"></td>
+					<td><input name="cosname" id="cosname" style="width: 500px;" value="${course.cosname}"></td>
 				</tr>
 				
 				<tr>
 					<td>코스내용 소개</td>
-					<td><textarea name="cosintro" id="cosintro" style="width: 500px; height: 100px;"></textarea></td>
+					<td><textarea name="cosintro" id="cosintro" style="width: 500px; height: 100px;">${course.cosintro}</textarea></td>
 				</tr>
 				
 				<tr>
 					<td>코스소개 영상</td>
-					<td><textarea name="cosintrovideo" id="cosintrovideo" placeholder="유튜브 영상주소를 입력해주세요" style="width: 500px; height: 100px;"></textarea></td>
+					<td><textarea name="cosintrovideo" id="cosintrovideo" placeholder="유튜브 영상주소를 입력해주세요" style="width: 500px; height: 100px;">
+					${course.cosintrovideo}
+					</textarea></td>
 				</tr>
 				
 				<tr>
@@ -81,7 +84,7 @@
 							<option selected value="0">카테고리 직접 입력</option>
 						</select>
 						<br>
-						<input name="coscategory1" id="coscategory1" style="width: 500px;" ></input>
+						<input name="coscategory1" id="coscategory1" style="width: 500px;" value="${course.coscategory1}"/>
 					</td>
 				</tr>
 				<tr>
@@ -94,7 +97,7 @@
 							<option selected value="0">카테고리 직접 입력</option>
 						</select>
 						<br>
-						<input name="coscategory2" id="coscategory2" style="width: 500px;" ></input>
+						<input name="coscategory2" id="coscategory2" style="width: 500px;" value="${course.coscategory2}"/>
 					</td>
 				</tr>
 				<tr>
@@ -104,7 +107,7 @@
 				
 				<tr>
 					<td colspan="2">
-					<input type="submit" class="btn btn-default"  value="코스 등록" /> 
+					<input type="submit" class="btn btn-default"  value="코스 수정" /> 
 					<button type="button" class="btn btn-default" onClick="location.href='/course/list'">코스 목록으로</button>
 				</tr>
 			</table>
