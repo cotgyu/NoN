@@ -36,4 +36,8 @@ public interface CourseMapper {
 	void updateCourse(Course cos);
 
 	void updateLecture(Lecture lecture);
+
+	int countCourse(Map map);
+
+	List<Course> AllfindCosList();
 }
