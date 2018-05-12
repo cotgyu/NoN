@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.Edu.Domain.Course;
 import com.Edu.Domain.Lecture;
+import com.Edu.Domain.Page;
 import com.Edu.Service.CourseService;
 
 @Controller
@@ -77,12 +78,7 @@ public class CourseController {
 	//코스 리스트 불러오기
 	@RequestMapping(value = "/list")
 	public ModelAndView CourseList( ModelAndView mav){		
-		//시간순으로 코스 가져오기(9개) 
-		List<Course> newCourseList = courseService.findNewCosList();
-				
-		//추천수 많은  코스 가져오기(9개) 
-		List<Course> popCourseList = courseService.findPopCosList();
-						
+					
 		//프로그래밍 상세 카테고리 가져오기
 		List<Course> ProgrammingCategory = courseService.findProgrammingCategory();
 		//디자인 상세 카테고리 가져오기
@@ -90,13 +86,12 @@ public class CourseController {
 		//비즈니스  상세 카테고리 가져오기
 		List<Course> BusinessCategory = courseService.findBusinessCategory();
 				
-				
+		
+		
+		
 		//modelandview에 정보 저장 
 		mav = new ModelAndView();
-		mav.addObject("newcourselist",newCourseList);
-		mav.addObject("popcourselist",popCourseList);
-		
-		
+	
 		mav.addObject("programmingcategory",ProgrammingCategory);
 		mav.addObject("designcategory",DesignCategory);
 		mav.addObject("businesscategory",BusinessCategory);
@@ -108,17 +103,41 @@ public class CourseController {
 	
 	//검색한 코스 리스트 불러오기
 		@RequestMapping(value = "/searchlist")
-		public ModelAndView SearchCourseList( ModelAndView mav, @RequestParam(defaultValue="") String keyword, @RequestParam(defaultValue="all") String searchOption){
+		public ModelAndView SearchCourseList( ModelAndView mav, 
+				@RequestParam(defaultValue="") String keyword, 
+				@RequestParam(defaultValue="all") String searchOption,
+				@RequestParam(defaultValue="1") int curPage
+				){
+			//코스 수
+			int count = courseService.countCourse(searchOption,keyword);
+			
+			//페이징 
+			Page Page = new Page(count, curPage);
+			int start = Page.getPageBegin();
+			int end = Page.getPageEnd();
+			
+			//프로그래밍 상세 카테고리 가져오기
+			List<Course> ProgrammingCategory = courseService.findProgrammingCategory();
+			//디자인 상세 카테고리 가져오기
+			List<Course> DesignCategory = courseService.findDesignCategory();
+			//비즈니스  상세 카테고리 가져오기
+			List<Course> BusinessCategory = courseService.findBusinessCategory();
+					
 			
 			//모든 코스 가져오기 
-			List<Course> courseList = courseService.findCosList(searchOption,keyword);
+			List<Course> courseList = courseService.findCosList(start,end,searchOption,keyword);
 			
 			//modelandview에 정보 저장 
 			mav = new ModelAndView();
 			mav.addObject("courselist",courseList);
 			mav.addObject("keyword", keyword);
 			mav.addObject("searchOption", searchOption);
+			mav.addObject("count", count);
+			mav.addObject("Page", Page);
 			
+			mav.addObject("programmingcategory",ProgrammingCategory);
+			mav.addObject("designcategory",DesignCategory);
+			mav.addObject("businesscategory",BusinessCategory);
 			mav.setViewName("/course/course_searchlist");
 					
 			return mav;
@@ -150,7 +169,7 @@ public class CourseController {
 	@RequestMapping(value = "/insertcourse", method = RequestMethod.POST)
 	public String InsertCourse( ModelAndView mav, @ModelAttribute Course cos, MultipartFile file) throws IOException{
 		//경로 수정해야하는데 ...음
-		String uploadPath = "C:/Users/SK/Desktop/spring_edu/EduProject/src/main/webapp/resources/courseImage/";
+		String uploadPath = "C:/Users/SK/Desktop/spring_non/src/main/webapp/resources/courseImage";
 		
 		
 		
@@ -192,17 +211,17 @@ public class CourseController {
 	  		courseService.insertCourse(cos);
 	  	}
 	    	    
-		return "redirect:/course/list";
+		return "redirect:/course/searchlist";
 	}
 	
 	
 	//todo - 등록 실패시 오류 페이지 만들기?
 	//강의 추가 창 이동
 	@RequestMapping(value = "/addlecture", method = RequestMethod.GET)
-	public ModelAndView AddLecture( ModelAndView mav, @RequestParam(defaultValue="") String keyword, @RequestParam(defaultValue="all") String searchOption){
+	public ModelAndView AddLecture( ModelAndView mav){
 		
-		//코스번호를 가져오기 위한 코스 불러오기 
-		List<Course> courseList = courseService.findCosList(searchOption ,keyword);
+		//코스번호를 가져오기 위한 코스 불러오기  
+		List<Course> courseList = courseService.AllfindCosList();
 		
 		//modelandview에 정보 저장 
 		mav = new ModelAndView();
@@ -244,9 +263,22 @@ public class CourseController {
 			courseService.insertLecture(lecture);
 		}
 		
-		return "redirect:/course/list";
+		return "redirect:/course/searchlist";
 	}
-
+	//수정할 코스 선택 
+	@RequestMapping(value = "/selectmodifycourse/", method = RequestMethod.GET)
+	public ModelAndView SelectModifyCourse( ModelAndView mav){
+		List<Course> allcourse = courseService.AllfindCosList();
+		
+		//modelandview에 정보 저장 
+		mav = new ModelAndView();
+		mav.addObject("allcourse",allcourse);	
+		
+		mav.setViewName("/course/course_selectmodify_cos");		
+		
+		return mav;
+	}
+	
 	
 	//코스 수정 창 이동
 	@RequestMapping(value = "/modifycourse/{cosno}", method = RequestMethod.GET)
@@ -274,7 +306,7 @@ public class CourseController {
 	@RequestMapping(value = "/updatecourse", method = RequestMethod.POST)
 	public String UpdateCourse( ModelAndView mav, @ModelAttribute Course cos, MultipartFile file) throws IOException{
 		//경로 수정해야하는데 ...음
-		String uploadPath = "C:/Users/SK/Desktop/spring_edu/EduProject/src/main/webapp/resources/courseImage/";
+		String uploadPath = "C:/Users/SK/Desktop/spring_non/src/main/webapp/resources/courseImage";
 			
 			
 			
@@ -318,14 +350,31 @@ public class CourseController {
 		    	    
 		return "redirect:/course/list";
 	}
-		
+	//수정할 강의 선택 
+		@RequestMapping(value = "/selectmodifylecture/{cosno}", method = RequestMethod.GET)
+		public ModelAndView SelectModifyLecture( ModelAndView mav,  @PathVariable("cosno") int cosno){
+			
+			//cosno에 맞는 강좌들 불러오기
+			List<Lecture> lecture = courseService.findCos_lec(cosno);
+			
+			
+			//modelandview에 정보 저장 
+			mav = new ModelAndView();
+			mav.addObject("lecture",lecture);	
+			
+			mav.setViewName("/course/course_selectmodify_lec");		
+			
+			return mav;
+		}
+	
+	
 	//강의 수정 창 이동
 		@RequestMapping(value = "/modifylecture/{lecno}", method = RequestMethod.GET)
-		public ModelAndView ModifyLecture( ModelAndView mav, @RequestParam(defaultValue="") String keyword, @RequestParam(defaultValue="all") String searchOption,
+		public ModelAndView ModifyLecture( ModelAndView mav,
 				@PathVariable("lecno") int lecno){
 			
 			//코스번호를 가져오기 위한 코스 불러오기 
-			List<Course> courseList = courseService.findCosList(searchOption ,keyword);
+			List<Course> courseList = courseService.AllfindCosList();
 			Lecture lecture = courseService.findLecture(lecno);
 			//modelandview에 정보 저장 
 			mav = new ModelAndView();

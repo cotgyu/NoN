@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>${lecture.lecname} 강의 수정</title>
+
 </head>
 <body>
 <div id="wrapper">
@@ -45,7 +46,7 @@
 				<tr>
 					<td>강좌 영상</td>
 					<td><textarea name="lecvideo" id="lecvideo" placeholder="유튜브 영상주소를 입력해주세요" style="width: 500px; height: 100px;">
-					${lecture.lecvideo}
+					https://www.youtube.com/watch?v=${lecture.lecvideo}
 					</textarea></td>
 				</tr>
 				
@@ -60,5 +61,12 @@
 		</div>
 <%@ include file="/WEB-INF/jsp/fixedIndex/footer.jsp" %>
 </div>
+
 </body>
+<script type="text/javascript">
+$(document).ready(function(){
+
+    $("select option[value='${lecture.cosno}']").attr("selected", true);
+});
+</script>
 </html>
