@@ -6,7 +6,7 @@ import com.Edu.Domain.Member;
 
 public interface MemberDaoMapper {
 
-	public Member loginCheck(String id);
+	public Member loginCheck(String id) throws Exception;
 
 	// 닉네임 중복 체크
 	public Member nickCheck(String nick);
@@ -15,7 +15,7 @@ public interface MemberDaoMapper {
 	public ArrayList<Member> getMemberList();
 
 	// 회원가입
-	public void joinMember(Member member);
+	public void joinMember(Member member); //여기서 에러나는데..........................
 
 	// 정보수정
 	public void Update(Member member);

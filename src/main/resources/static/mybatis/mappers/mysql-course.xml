@@ -45,7 +45,7 @@
 	<!-- 시간순으로 코스 가져오기(9개) -->
 	<select id="findNewCosList" resultType="Course">
 		SELECT *
-		FROM course ORDER BY cosregdate desc LIMIT 9
+		FROM course ORDER BY cosregtime desc LIMIT 9
 	</select>
 	
 	<!-- 인기 코스 가져오기 -->
