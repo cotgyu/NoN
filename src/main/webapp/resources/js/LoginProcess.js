@@ -79,7 +79,7 @@ $(document).ready(function() {
 	var genderBoolean=false;
 	var mobileBoolean = false;
 	// ID 유효성 및 중복검사
-	$("#joinId").change(function() {
+	$("#joinId").change(function() {		//change function은 enter or 다른곳 클릭하면 실행.
 		
 		var id = $("#joinId").val();
 		regId = /^[가-힣a-zA-Z0-9]{5,20}$/; // 유효성
@@ -132,6 +132,7 @@ $(document).ready(function() {
 		});
 
 	});
+	
 	// 이름 유효성검사
 	$("#name").change(function() {
 		var name = $("#name").val();

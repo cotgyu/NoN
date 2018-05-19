@@ -11,7 +11,8 @@
 
   <title>edu pjt_3-Col </title>
  <!-- Bootstrap -->
-  <link href="resources/plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- <link href="resources/plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">안대는거 -->
+  <link href="resources/indexresource/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"><!--내꺼  -->
   
   <!-- Font Awesome -->
   <link href="resources/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -19,32 +20,35 @@
   <!-- Fancy Box -->
   <link href="resources/plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
   <link href="resources/plugins/jquery-nice-select/css/nice-select.css" rel="stylesheet">
-  <link href="resources/plugins/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css" rel="stylesheet">
+  <!-- <link href="resources/plugins/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css" rel="stylesheet"> -->
   
   <!-- CUSTOM CSS -->
   <link href="resources/css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="resources/css/member/login.css"> 
   
    <!-- member js -->
-  <script src="resources/plugins/jquery/dist/jquery.js"></script>
+  <!-- <script src="resources/plugins/jquery/dist/jquery.js"></script> 없어-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-  <script src="resources/js/LoginProcess.js"></script>
+  <!-- <script src="resources/js/LoginProcess.js"></script> -->
+  	
+	  
   
   <!-- 다음 이메일 -->
   <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> 
   
   <!-- 카카오 로그인 -->
-  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+  <!-- <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script> -->
 
-
+	<%@ include file="jsjs.jsp"%>
 </head>
 
   
 <body>
 	<article id="login_arti">
 	<div class="login-form-1">
-		<form id="login-form" class="text-left" name="loginC" method="post">
+		<form id="login-form" class="text-left" name="loginC" method="post"><!-- 로그인form으로.. -->
 			<div class="login-form-main-message"></div>
 			<div class="main-login-form">
 				<div class="login-group">
@@ -59,8 +63,8 @@
 							name="pass" placeholder="password">
 					</div>
 					<div class="form-group login-group-checkbox">
-						<input type="checkbox" id="lg_remember" name="lg_remember">
 						<label for="lg_remember">remember</label>
+						<input type="checkbox" id="lg_remember" name="lg_remember"><!-- remember텍스트 눌러도 체크박스에 체크가능하게.. -->
 					</div>
 				</div>
 				<button type="submit" class="login-button">
@@ -93,5 +97,25 @@
 
 	</div>
 	</article>
+	
+	
+	
+	<!-- Modal -->
+  <div class="modal" id="exampleModal" role="dialog">
+    <div class="modal-dialog">
+    
+      Modal content
+      <div class="modal-content">
+        <div class="modal-header">
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger btn-md" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 </body>
 </html>

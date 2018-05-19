@@ -6,7 +6,7 @@ import com.Edu.Domain.Member;
 
 public interface MemberService {
 	
-	public Member loginCheck(String id);
+	public Member loginCheck(String id) throws Exception;
 	
 	// 닉네임 중복 체크
 	public Member nickCheck(String nick);

@@ -40,16 +40,28 @@ public class MemberController {
 
 	@RequestMapping(value ="/m_register")
 	public String register() {
+		
 		return "member/register";
 	}
 	
-	@RequestMapping(value="/login")
+	@RequestMapping(value="/login")//로그인 페이지로 이동
 	public String login(Model model,HttpSession session) {
 		String state = UUID.randomUUID().toString();
+		System.out.println("FIRST uuid"+state);
 		model.addAttribute("state", state);
 		session.setAttribute("state", state);
+		
+		System.out.println("modelAtt"+state);
+		System.out.println("sessionAtt"+state);
 		return "member/login";
 	}
+	@RequestMapping("/logout")
+	public String logout(SessionStatus sessionStatus, HttpSession session) {
+		session.removeAttribute("member");
+		session.invalidate();
+		return "redirect:course/list";
+	}
+	
 	@RequestMapping(value="/m_update")
 	public String update() {
 		return "member/m_update";
@@ -62,7 +74,7 @@ public class MemberController {
 	public String goMain() {
 		return "main";
 	}
-	@RequestMapping(value = "/joinResult")
+	@RequestMapping(value = "/joinResult")//회원가입시...
 	public String joinResult(Model model, Member member, String id, String pass, String name, String nick,
 			String email1, String email2, String birth1, String birth2, String birth3, String zipCode, String address1,
 			String address2, String mobile1, String mobile2, String mobile3, String gender, String emailGet,
@@ -84,15 +96,9 @@ public class MemberController {
 		member.setRegDate(new Timestamp(System.currentTimeMillis()));
 
 		memberService.joinMember(member);
-		return "redirect:main";
+		return "redirect:course/list";
 	}
 
-	@RequestMapping("/logout")
-	public String logout(SessionStatus sessionStatus, HttpSession session) {
-		session.removeAttribute("member");
-		session.invalidate();
-		return "redirect:main";
-	}
 
 	@RequestMapping("/updateResult")
 	public String m_update(Member member, String u_name, String u_nick, String u_email1, String u_email2,

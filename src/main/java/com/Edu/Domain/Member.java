@@ -6,10 +6,11 @@ public class Member {
 	private String name, id, pass, email, mobile,nick;
 	private String phone, zipcode, address1, address2,birth,gender,profile_image;
 	private boolean emailGet;
+	private int grade;
 	private Timestamp regDate;
 	
 	public Member() {}
-	
+
 	public String getGender() {
 		return gender;
 	}
@@ -105,7 +106,14 @@ public class Member {
 	public void setProfile_image(String profile_image) {
 		this.profile_image = profile_image;
 	}
+	
+	public int getGrade() {
+		return grade;
+	}
 
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
 
 
 }

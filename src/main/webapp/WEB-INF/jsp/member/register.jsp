@@ -12,41 +12,47 @@
   <title>edu pjt_3-Col </title>
   
  <!-- Bootstrap -->
-  <link href="resources/plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- <link href="resources/plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> jaykim님꺼-->
+  <link href="resources/indexresource/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"><!--내꺼  -->
+   
   
-  <!-- Font Awesome -->
-  <link href="resources/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Font Awesome --><!--i class="fa fa-adress-card" 이부분 사용하는듯 , 개인 이모티콘사용시..-->
+  <link href="resources/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"><!--리소스존재  -->
   
-  <!-- slick 1.8.0 -->
+  <!-- Fancy Box -->
+  <link href="resources/plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet"><!-- 로딩중인거 표시할때 쓰는듯..리소스존재 -->
+  <link href="resources/plugins/jquery-nice-select/css/nice-select.css" rel="stylesheet"><!--셀럭터인데 안쓰인듯..리소스존재  -->
+  <!-- <link href="resources/plugins/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css" rel="stylesheet"> --><!--슬라이더 만들때 필요한듯 근데 no리소스.  -->
+  
+  <!-- CUSTOM CSS -->
+  <link href="resources/css/style.css" rel="stylesheet"><!--리소스 존재  -->
+  <link rel="stylesheet" href="resources/css/member/login.css"> <!--리소스 존재  -->
+  
+  <!-- member js -->
+  <!-- <script src="resources/plugins/jquery/dist/jquery.js"></script> --><!-- 오리지날,리소스에 없다, but 꼭잇어야댐 안그럼 에러남... -->
+  <!-- <script src="resources/plugins/jquery-nice-select/js/jquery.js"></script> --><!--jaykim님 jquery.js  -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><!--걍 cdn받아서...  -->
+  <!-- jquery를 속성 추가안해주면 디비에 바로 저장까진 가능. -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+  <!-- <script src="resources/js/LoginProcess.js"></script> --><!--로그인관련 js파일 엄청남  -->
+
+  
+  <!-- slick 1.8.0 --><!-- slick 사용은 없어보인다 아직..둘다 리소스 존재 -->
   <link rel="stylesheet" type="text/css" href="resources/plugins/slick-1.8.0/slick/slick.css">
   <link rel="stylesheet" type="text/css" href="resources/plugins/slick-1.8.0/slick/slick-theme.css">
 
-  
-  <!-- Fancy Box -->
-  <link href="resources/plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
-  <link href="resources/plugins/jquery-nice-select/css/nice-select.css" rel="stylesheet">
-  <link href="resources/plugins/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css" rel="stylesheet">
-  
-  <!-- CUSTOM CSS -->
-  <link href="resources/css/style.css" rel="stylesheet">
-  <link rel="stylesheet" href="resources/css/member/login.css"> 
-  
-  <!-- member js -->
-  <script src="resources/plugins/jquery/dist/jquery.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
- <script src="resources/js/LoginProcess.js"></script>
-  
-  <!-- 다음 이메일 -->
-  <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> 
+  <!-- 다음 이메일 --><!-- 다음 우편번호 검색위해 반드시필요하다. -->
+  <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
   
   <!-- 카카오 로그인 -->
-  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+  <!-- <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script> -->
 
-
+	<%@ include file="jsjs.jsp"%>
 </head>
 <body>
-
+ 
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -54,7 +60,7 @@
 					<span>Edu Project 회원 가입</span>
 				</h3>
 				<hr>
-				<form class="form-horizontal" method="post" name="joinC" id="signup">
+				<form class="form-horizontal" method="post" name="joinC" id="signup" action="joinResult"><!--액션추가  -->
 					<div class="form-group">
 						<label class="control-label col-sm-3">Login ID <span
 							class="text-danger">*</span></label>
@@ -465,7 +471,7 @@
 					<div class="form-group" id="join14" style="">
 						<div class="col-xs-offset-3 col-xs-10">
 							<input name="Submit" type="submit" value="회원가입" id="btnJoinSubmit" style="margin-top:10px;"
-								class="btn btn-outline-success btn-lg btn-block">
+								class="btn btn-outline-success btn-lg btn-block"><!--btnJoinSumit이 이벤트발생 -->
 						</div>
 					</div>
 				</form>
@@ -473,8 +479,23 @@
 		</div>
 	</div>
 
-	
-
+<!-- Modal -->
+  <div class="modal" id="exampleModal" role="dialog">
+    <div class="modal-dialog">
+    
+      Modal content
+      <div class="modal-content">
+        <div class="modal-header">
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger btn-md" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 
 
 </body>

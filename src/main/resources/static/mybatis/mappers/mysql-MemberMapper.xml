@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.Edu.Dao.MemberMapper" >
+<mapper namespace="com.Edu.Dao.MemberDaoMapper">
 
 	<select id="loginCheck" resultType="Member">
 		SELECT * FROM member WHERE id=#{id}
+		<!-- SELECT COUNT(*) FROM member WHERE id=#{id} -->
 	</select>
 	
 	<select id="nickCheck" resultType="Member">
@@ -13,9 +14,13 @@
 	
 	<insert id="joinMember" parameterType="Member" useGeneratedKeys="true" keyProperty="no">
 		INSERT INTO member 
-		VALUES(#{id}, #{pass}, #{name}, #{nick}, #{birth}, #{email}, #{mobile}, #{zipCode},
-		#{address1}, #{address2}, #{phone}, #{emailGet}, SYSDATE(), #{gender},#{profile_image})
+		VALUES(#{id}, #{pass}, #{name}, #{nick}, #{birth}, #{email}, #{mobile}, #{zipcode},
+		#{address1}, #{address2}, #{phone}, #{emailGet}, SYSDATE(), #{gender},#{profile_image},#{grade})
 	</insert>
+	
+	<select id="login" resultType="Member">
+		SELECT * FROM member WHERE id=#{id}
+	</select>
 
 	<select id="forgotPassword" resultType="Member">
 		SELECT * FROM member WHERE id=#{id}

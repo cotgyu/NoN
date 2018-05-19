@@ -22,7 +22,7 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDaoMapper memberDaoMapper;
 
 	@Override
-	public Member loginCheck(String id) {
+	public Member loginCheck(String id) throws Exception {
 		System.out.println("서비스에 로긴첵 id = " + id);
 		return memberDaoMapper.loginCheck(id);
 	}
@@ -49,6 +49,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public Member login(String id) {
+		System.out.println("ajaxprocess에서 서비스 임플 까지 id pass 넘어옴"+id);
 		return memberDaoMapper.login(id);
 	}
 

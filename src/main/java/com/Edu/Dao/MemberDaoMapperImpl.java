@@ -1,14 +1,12 @@
-package com.Edu.Dao;
+/*package com.Edu.Dao;
 
 import java.util.ArrayList;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 import com.Edu.Domain.Member;
 
-@Repository
 public class MemberDaoMapperImpl implements MemberDaoMapper {
 
 	@Autowired
@@ -17,14 +15,17 @@ public class MemberDaoMapperImpl implements MemberDaoMapper {
 	private final String NAME_SPACE = "com.Edu.Dao.MemberMapper";
 	
 	@Override
-	public Member loginCheck(String id) {
-		System.out.println("다오에 로긴첵 id = " + id);
-		return sqlSession.selectOne(NAME_SPACE+".loginCheck", id);
+	public Member loginCheck(String id){ 
+			System.out.println("다오에 로긴첵 id = " + id);
+			return sqlSession.selectOne(NAME_SPACE+".loginCheck", id);
+		
 	}
 
 	@Override
 	public Member nickCheck(String nick) {
+		System.out.println("nick check부분");	
 		return sqlSession.selectOne(NAME_SPACE+".nickCheck", nick);
+		
 	}
 
 	@Override
@@ -36,7 +37,7 @@ public class MemberDaoMapperImpl implements MemberDaoMapper {
 	@Override
 	public void joinMember(Member member) {
 		sqlSession.insert(NAME_SPACE+".joinMember", member);
-		
+		System.out.println("joinmemeber 함수 테스트");
 	}
 
 	@Override
@@ -72,3 +73,4 @@ public class MemberDaoMapperImpl implements MemberDaoMapper {
 	}
 
 }
+*/

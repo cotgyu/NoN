@@ -1,6 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-    <article>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>index page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>edu pjt_3-Col </title>
+ <!-- Bootstrap -->
+  <!-- <link href="resources/plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">안대는거 -->
+  <link href="resources/indexresource/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"><!--내꺼  -->
+  
+  <!-- Font Awesome -->
+  <link href="resources/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- Fancy Box -->
+  <link href="resources/plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
+  <link href="resources/plugins/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+  <!-- <link href="resources/plugins/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css" rel="stylesheet"> -->
+  
+  <!-- CUSTOM CSS -->
+  <link href="resources/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="resources/css/member/login.css"> 
+  
+   <!-- member js -->
+  <!-- <script src="resources/plugins/jquery/dist/jquery.js"></script> 없어-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+  <!-- <script src="resources/js/LoginProcess.js"></script> -->
+  	
+	  
+  
+  <!-- 다음 이메일 -->
+  <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> 
+  
+  <!-- 카카오 로그인 -->
+  <!-- <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script> -->
+
+	<%@ include file="jsjs.jsp"%>
+</head>
+<article>
 <div class="container">
 		<div class="row">
 			<div class="col-md-12">
