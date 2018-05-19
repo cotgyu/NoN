@@ -39,7 +39,7 @@
 	            WHERE ${searchOption} like '%${keyword}%'
 	        </otherwise>
     	</choose>
-		LIMIT ${start}, 10;
+		ORDER BY cosregtime desc LIMIT ${start}, 10;
 	</select>
 	
 	<!-- 시간순으로 코스 가져오기(9개) -->
@@ -135,7 +135,7 @@
 	<!-- 기본적인 코스리스트 불러오기 -->
 	<select id="AllfindCosList" resultType="Course">
 		SELECT *
-		FROM course 
+		FROM course
 	</select>
 
 </mapper>

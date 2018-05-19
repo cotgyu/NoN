@@ -6,11 +6,5 @@
       <div class="container text-center">
         <h1>NoN</h1>
         <p class="lead">NoN에서 쉽고 빠르게 IT분야를 학습할 수 있습니다!</p>
-        <div class="searchMenu">
-				<form name="searchform" method="post" action="/course/searchlist">			     	
-				    <input name="keyword" value="${keyword}" placeholder="원하는 강좌를 입력해주세요!" style="width: 250px;">
-				    <button type="submit" class="btn">검색</button>
-				</form>
-			</div>		
       </div>
     </header>

@@ -6,11 +6,74 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>분야별 강좌</title>
-<script>
-//페이지로 이동 (검색조건, 키워드 )
-function list(page){
-    location.href="/course/searchlist?curPage="+page+"&searchOption-${searchOption}"+"&keyword=${keyword}";
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+//페이지 이동 
+function pagelist(page){
+	var keyword = document.getElementById("hiddenkeyword").value;
+	var searchOption = document.getElementById("hiddensearchOption").value;
+	//페이지 맨위로
+	window.scrollBy(0,0); 
+	window.scrollTo(0,0);
+	//ajax
+	$.ajax({
+		type : "get",
+		url : "/course/searchajaxlist?keyword="+keyword+"&curPage="+page+"&searchOption="+searchOption,
+		success : function(result) {
+			$("#ajaxlist").html(result);
+		}
+	});
 }
+//키워드 검색
+function searchlist() {
+		var keyword = document.getElementById("ajaxkeyword").value;
+		//페이지 맨위로
+		window.scrollBy(0,0); 
+		window.scrollTo(0,0);
+		//ajax
+		$.ajax({
+			type : "get",
+			url : "/course/searchajaxlist?keyword="+keyword,
+			success : function(result) {
+				$("#ajaxlist").html(result);
+			}
+		});
+}
+//카테고리 검색
+function searchcategorylist(searchOption, category) {
+		var keyword = document.getElementById("ajaxkeyword").value;
+		//페이지 맨위로
+		window.scrollBy(0,0); 
+		window.scrollTo(0,0);
+		//ajax
+		$.ajax({
+			type : "get",
+			url : "/course/searchajaxlist?keyword="+category+"&searchOption="+searchOption,
+			success : function(result) {
+				$("#ajaxlist").html(result);
+			}
+		});
+}
+
+$(document).ready(function() {
+	//기본화면 리스트 
+	var keyword = document.getElementById("ajaxkeyword").value;
+	$.ajax({
+		type : "get",
+		url : "/course/searchajaxlist?keyword="+keyword,
+		success : function(result) {
+			$("#ajaxlist").html(result);
+		}
+	});
+
+	//키워드 엔터 검색시 함수 실행 
+	 $("#ajaxkeyword").keypress(function (e) {
+		 //13은 엔터키 
+	        if (e.which == 13){
+	                   searchlist();  
+	        }
+	    });
+})
 
 </script>
 <style>
@@ -133,27 +196,27 @@ text-indent:-9999em;
 		<jsp:include page="/WEB-INF/jsp/fixedIndex/menuButton.jsp" />
 		<div class="container">
 		<div class="menubar">
-			<h3>강좌 카테고리</h3>
+			<h3>분야별 강좌</h3>
 			   <ul>
 			      
-			      <li><a href="/course/searchlist?searchOption=coscategory1&keyword=프로그래밍" id="current">프로그래밍</a>
+			      <li><a href="javascript:searchcategorylist('coscategory1', '프로그래밍')" id="current">프로그래밍</a>
 			         <ul>
 			           <c:forEach var="procategory" items="${programmingcategory}">
-			     		 <li><a href="/course/searchlist?searchOption=coscategory2&keyword=${procategory.coscategory2}">${procategory.coscategory2}</a></li>
+			     		 <li><a href="javascript:searchcategorylist('coscategory2', '${procategory.coscategory2}')">${procategory.coscategory2}</a></li>
 			      	   </c:forEach>
 			         </ul>
 			      </li>    
-			      <li><a href="/course/searchlist?searchOption=coscategory1&keyword=디자인/CG" id="current">디자인/CG</a>
+			      <li><a href="javascript:searchcategorylist('coscategory1', '디자인/CG')" id="current">디자인/CG</a>
 			         <ul>
 			           <c:forEach var="decategory" items="${designcategory}">
-			     		 <li><a href="/course/searchlist?searchOption=coscategory2&keyword=${decategory.coscategory2}">${decategory.coscategory2}</a></li>
+			     		 <li><a href="javascript:searchcategorylist('coscategory2', '${decategory.coscategory2}')">${decategory.coscategory2}</a></li>
 			      		</c:forEach>
 			         </ul>
 			      </li>
-			      <li><a href="/course/searchlist?searchOption=coscategory1&keyword=IT비즈니스" id="current">IT비즈니스</a>
+			      <li><a href="javascript:searchcategorylist('coscategory1', 'IT비즈니스')" id="current">IT비즈니스</a>
 			         <ul>
 			           <c:forEach var="bucategory" items="${businesscategory}">
-			     		 <li><a href="/course/searchlist?searchOption=coscategory2&keyword=${bucategory.coscategory2}">${bucategory.coscategory2}</a></li>
+			     		 <li><a href="javascript:searchcategorylist('coscategory2', '${bucategory.coscategory2}')">${bucategory.coscategory2}</a></li>
 			      		</c:forEach>
 			         </ul>
 			      </li>
@@ -163,104 +226,15 @@ text-indent:-9999em;
 			<br><br><br>
 			<!-- 코스 검색 -->						
 			<div class="searchMenu">
-				<form name="searchform" method="post" action="/course/searchlist">			     	
-				    <input name="keyword" value="${keyword}" placeholder="원하는 강좌를 입력해주세요!" style="width: 250px;">
-				    <button type="submit" class="btn">검색</button>
-				</form>
-			</div>					
+		 	
+				<input name="ajaxkeyword" id="ajaxkeyword" value="${ajaxkeyword}" placeholder="원하는 강좌를 입력해주세요!" style="width: 250px;">
+				<button type="submit" class="btn" name="searchlist" onclick="javascript:searchlist()">검색</button>				
+			
+			</div>						
 			<br><br><br>
 					
-			<div>
-				<!-- 카테고리 검색일시 카테고리문구 표시 -->			
-				<c:choose>
-					<c:when test="${searchOption == 'coscategory2'}">
-						<h3>카테고리 "${keyword}" 검색 결과</h3>
-					</c:when>
-					<c:when test="${searchOption == 'coscategory1'}">
-						<h3>카테고리 "${keyword}" 검색 결과</h3>
-					</c:when>
-					<c:when test="${empty keyword}">
-						<h3>모든 강좌 검색 결과</h3>
-					</c:when>
-					<c:otherwise>
-						<h3>"${keyword}" 검색 결과</h3>	
-					</c:otherwise>
-				</c:choose>				
-			
-				<!-- 코스 리스트 -->
-				<div class="row">
-					<c:forEach var="coslist" items="${courselist}">
-						<div class="col-md-4 col-sm-4 portfolio-item">
-				              <div class="card h-100">
-				                <a href="/course/intro/${coslist.cosno}"><img class="card-img-top" src="/resources/courseImage/${coslist.cospicture}" alt=""></a>
-				                <div class="card-body">
-				                  <h4 class="cardZ-title">
-				                    <a href="/course/intro/${coslist.cosno}">${coslist.cosname}</a>
-				                  </h4>
-				                </div>
-				              </div>
-				        </div>
-				        <div class="col-md-8 col-sm-8 portfolio-item" style="border-top: 2px solid gray">
-				        	${coslist.cosintro}
-				        </div>
-					</c:forEach>
-				</div>
-			</div>
-			<br><br><br>
-			
-	        	<!-- Pagination 수정해야함!!-->
-		          <ul class="pagination justify-content-center">
-		            <li class="page-item">
-			            <c:if test="${Page.curPage > 1}">
-			              <a class="page-link" href="javascript:list('1')" aria-label="Previous">
-			                <span aria-hidden="true">&laquo;</span>
-			                <span class="sr-only">처음</span>  		
-			              </a>
-			            </c:if>
-		            </li>
-			        <c:if test="${Page.curBlock > 1}">
-			        	<li class="page-item">
-			              	<a class="page-link" href="javascript:list('${Page.prevPage}')">
-			                	<span aria-hidden="true">&hellip;</span>
-			                	<span class="sr-only">이전블록</span>
-			            	</a>
-		            	</li>			        
-		            </c:if>
-		            <!-- 페이지 표시 -->     
-	                <c:forEach var="num" begin="${Page.blockBegin}" end="${Page.blockEnd}">
-	                    <!-- 현재 페이지는 링크 제거 -->
-	                    <c:choose>
-	                        <c:when test="${num == Page.curPage}">
-								<li class="page-link" style="color: red">${num}
-	                            </li>
-	                        </c:when>
-	                        <c:otherwise>
-	                        <li class="page-item">		            
-	                            <a class="page-link" href="javascript:list('${num}')">${num}</a>
-	                        </li>
-	                        </c:otherwise>
-	                    </c:choose>
-	                </c:forEach>
-		            
-		              <!-- 다음 블록으로 이동  -->
-	                <c:if test="${Page.curBlock < Page.totBlock}">
-	                	<li class="page-item">
-			              	<a class="page-link" href="javascript:list('${Page.nextPage}')">
-			                	<span aria-hidden="true">&hellip;</span>
-			                	<span class="sr-only">다음블록</span>
-			            	</a>
-		            	</li>
-		            </c:if>
-		            <!-- 마지막 페이지로 이동 -->
-	                <c:if test="${Page.curPage < Page.totPage}">
-	                <li class="page-item">
-		              <a class="page-link" href="javascript:list('${Page.totPage}')">
-		                <span aria-hidden="true">&raquo;</span>
-		                <span class="sr-only">끝</span>
-		              </a>
-		            </li>
-	                </c:if>
-		          </ul>
+			<div id="ajaxlist"></div>
+		
 		</div>
 		<br>
 		<%@ include file="/WEB-INF/jsp/fixedIndex/footer.jsp"%>
