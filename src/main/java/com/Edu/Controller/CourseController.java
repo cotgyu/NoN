@@ -75,77 +75,65 @@ public class CourseController {
 	}
 	
 	
-	//코스 리스트 불러오기
+	//검색한 코스 리스트 불러오기
 	@RequestMapping(value = "/list")
-	public ModelAndView CourseList( ModelAndView mav){		
-					
+	public ModelAndView SearchCourseList(ModelAndView mav ){
+		
+			
 		//프로그래밍 상세 카테고리 가져오기
 		List<Course> ProgrammingCategory = courseService.findProgrammingCategory();
 		//디자인 상세 카테고리 가져오기
 		List<Course> DesignCategory = courseService.findDesignCategory();
 		//비즈니스  상세 카테고리 가져오기
 		List<Course> BusinessCategory = courseService.findBusinessCategory();
-				
-		
-		
-		
+					
+			
 		//modelandview에 정보 저장 
 		mav = new ModelAndView();
-	
+
+			
 		mav.addObject("programmingcategory",ProgrammingCategory);
 		mav.addObject("designcategory",DesignCategory);
 		mav.addObject("businesscategory",BusinessCategory);
+		mav.setViewName("/course/course_searchlist");
+					
+		return mav;
+	}
 		
-		mav.setViewName("/course/courselist");
-				
+	//키워드 검색 리스트 
+	@RequestMapping(value = "/searchajaxlist")
+	public ModelAndView SearchajaxCourseList( ModelAndView mav, 
+			@RequestParam(defaultValue="") String keyword, 
+			@RequestParam(defaultValue="all") String searchOption,
+			@RequestParam(defaultValue="1") int curPage
+			){
+		//코스 수
+		int count = courseService.countCourse(searchOption,keyword);
+			
+		//페이징 
+		Page Page = new Page(count, curPage);
+		int start = Page.getPageBegin();
+		int end = Page.getPageEnd();
+	
+		//모든 코스 가져오기 
+		List<Course> courseList = courseService.findCosList(start,end,searchOption,keyword);
+			
+		//modelandview에 정보 저장 
+		mav = new ModelAndView();
+		mav.addObject("courselist",courseList);
+		mav.addObject("keyword", keyword);
+		mav.addObject("searchOption", searchOption);
+		mav.addObject("count", count);
+		mav.addObject("Page", Page);
+	
+		mav.setViewName("/course/ajaxlist");
+					
 		return mav;
 	}
 	
-	//검색한 코스 리스트 불러오기
-		@RequestMapping(value = "/searchlist")
-		public ModelAndView SearchCourseList( ModelAndView mav, 
-				@RequestParam(defaultValue="") String keyword, 
-				@RequestParam(defaultValue="all") String searchOption,
-				@RequestParam(defaultValue="1") int curPage
-				){
-			//코스 수
-			int count = courseService.countCourse(searchOption,keyword);
-			
-			//페이징 
-			Page Page = new Page(count, curPage);
-			int start = Page.getPageBegin();
-			int end = Page.getPageEnd();
-			
-			//프로그래밍 상세 카테고리 가져오기
-			List<Course> ProgrammingCategory = courseService.findProgrammingCategory();
-			//디자인 상세 카테고리 가져오기
-			List<Course> DesignCategory = courseService.findDesignCategory();
-			//비즈니스  상세 카테고리 가져오기
-			List<Course> BusinessCategory = courseService.findBusinessCategory();
-					
-			
-			//모든 코스 가져오기 
-			List<Course> courseList = courseService.findCosList(start,end,searchOption,keyword);
-			
-			//modelandview에 정보 저장 
-			mav = new ModelAndView();
-			mav.addObject("courselist",courseList);
-			mav.addObject("keyword", keyword);
-			mav.addObject("searchOption", searchOption);
-			mav.addObject("count", count);
-			mav.addObject("Page", Page);
-			
-			mav.addObject("programmingcategory",ProgrammingCategory);
-			mav.addObject("designcategory",DesignCategory);
-			mav.addObject("businesscategory",BusinessCategory);
-			mav.setViewName("/course/course_searchlist");
-					
-			return mav;
-		}
-	
 		
 	
-	//todo - insert 한글깨짐, 등록 실패시 오류 페이지 만들기? 
+	//todo - 등록 실패시 오류 페이지 만들기? 
 	//코스 추가 창 이동
 	@RequestMapping(value = "/addcourse", method = RequestMethod.GET)
 	public ModelAndView AddCourse( ModelAndView mav){
@@ -211,7 +199,7 @@ public class CourseController {
 	  		courseService.insertCourse(cos);
 	  	}
 	    	    
-		return "redirect:/course/searchlist";
+		return "redirect:/course/list";
 	}
 	
 	
@@ -263,7 +251,7 @@ public class CourseController {
 			courseService.insertLecture(lecture);
 		}
 		
-		return "redirect:/course/searchlist";
+		return "redirect:/course/list";
 	}
 	//수정할 코스 선택 
 	@RequestMapping(value = "/selectmodifycourse/", method = RequestMethod.GET)

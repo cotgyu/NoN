@@ -5,7 +5,7 @@
 		<div id="sidebar-wrapper">
 			<ul class="sidebar-nav">
 				<li class="sidebar-brand"><a href="#"> 공백...(수정해야함..) </a></li>
-				<li><a href="/course/searchlist">분야별 강좌</a></li>
+				<li><a href="/course/list">분야별 강좌</a></li>
 				<li><a href="#">질문과 답변</a></li>
 				<li><a href="#">내 강좌</a></li>
 				<li><a href="/course/addcourse">강좌 추가</a></li>
