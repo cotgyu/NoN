@@ -37,8 +37,10 @@ public class CourseServiceImpl implements CourseService{
 
 	//course리스트 불러오기 
 	@Override
-	public List<Course> findCosList(String searchOption, String keyword) {
+	public List<Course> findCosList(int start, int end, String searchOption, String keyword) {
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", start);
+		map.put("end", end);
 		map.put("searchOption", searchOption);
 		map.put("keyword", keyword);
 		
@@ -103,6 +105,22 @@ public class CourseServiceImpl implements CourseService{
 	public void updateLecture(Lecture lecture) {
 		courseMapper.updateLecture(lecture);
 		
+	}
+
+	@Override
+	public int countCourse(String searchOption, String keyword) {
+		Map<String, Object> map = new HashMap<String, Object>();
+	
+		map.put("searchOption", searchOption);
+		map.put("keyword", keyword);
+		
+	
+		return courseMapper.countCourse(map);
+	}
+
+	@Override
+	public List<Course> AllfindCosList() {
+		return courseMapper.AllfindCosList();
 	}
 
 

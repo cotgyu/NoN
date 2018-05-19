@@ -70,7 +70,7 @@
 				<tr>
 					<td>코스소개 영상</td>
 					<td><textarea name="cosintrovideo" id="cosintrovideo" placeholder="유튜브 영상주소를 입력해주세요" style="width: 500px; height: 100px;">
-					${course.cosintrovideo}
+					http://www.youtube.com/watch?v=${course.cosintrovideo}
 					</textarea></td>
 				</tr>
 				
@@ -109,6 +109,8 @@
 					<td colspan="2">
 					<input type="submit" class="btn btn-default"  value="코스 수정" /> 
 					<button type="button" class="btn btn-default" onClick="location.href='/course/list'">코스 목록으로</button>
+					<br>
+					<button type="button" class="btn btn-default" onClick="location.href='/course/selectmodifylecture/${course.cosno}'">강의 수정하기</button>				
 				</tr>
 			</table>
 		</form>
