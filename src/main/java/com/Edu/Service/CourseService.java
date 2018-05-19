@@ -15,7 +15,7 @@ public interface CourseService {
 
 	public Lecture findLecture(int lecno);
 
-	public List<Course> findCosList(String searchOption, String keyword);
+	public List<Course> findCosList(int start,int end,String searchOption, String keyword);
 
 	public void insertCourse(Course cos);
 
@@ -36,4 +36,8 @@ public interface CourseService {
 	public void updateCourse(Course cos);
 
 	public void updateLecture(Lecture lecture);
+
+	public int countCourse(String searchOption, String keyword);
+
+	public List<Course> AllfindCosList();
 }

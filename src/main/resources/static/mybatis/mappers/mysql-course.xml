@@ -39,7 +39,7 @@
 	            WHERE ${searchOption} like '%${keyword}%'
 	        </otherwise>
     	</choose>
-		
+		ORDER BY cosregtime desc LIMIT ${start}, 10;
 	</select>
 	
 	<!-- 시간순으로 코스 가져오기(9개) -->
@@ -115,6 +115,27 @@
 		WHERE lecno = #{lecno}
 	</update>
 	
+	<select id="countCourse" resultType="Integer">
+		SELECT COUNT(*) FROM course
+		<choose>
+	        <!-- 검색옵션이 전체 검색일 경우 -->
+	        <when test="searchOption == 'all'">
+	            WHERE coscategory1 like '%${keyword}%'
+	            OR coscategory2 like '%${keyword}%'
+	            OR cosname like '%${keyword}%'
+	        </when>
+	        <!-- 전체 검색이 아닐 경우 -->
+	        <otherwise>
+	            WHERE ${searchOption} like '%${keyword}%'
+	        </otherwise>
+    	</choose>
 	
+	</select>
+	
+	<!-- 기본적인 코스리스트 불러오기 -->
+	<select id="AllfindCosList" resultType="Course">
+		SELECT *
+		FROM course
+	</select>
 
 </mapper>
