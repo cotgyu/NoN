@@ -59,7 +59,7 @@ public class MemberController {
 	public String logout(SessionStatus sessionStatus, HttpSession session) {
 		session.removeAttribute("member");
 		session.invalidate();
-		return "redirect:course/list";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value="/m_update")
@@ -96,7 +96,7 @@ public class MemberController {
 		member.setRegDate(new Timestamp(System.currentTimeMillis()));
 
 		memberService.joinMember(member);
-		return "redirect:course/list";
+		return "redirect:/";
 	}
 
 
