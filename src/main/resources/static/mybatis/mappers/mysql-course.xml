@@ -137,5 +137,16 @@
 		SELECT *
 		FROM course
 	</select>
-
+	
+	<!-- 수강하기 -->
+	<insert id="subscribe">
+		INSERT INTO subscribe (cosno, id) 
+		VALUES(#{cosno}, #{id})
+	</insert>
+	
+	<!-- 내 강좌 조회 -->
+	<select id="mycourse" resultType="Course">
+		SELECT * FROM course c, subscribe s 
+		WHERE c.cosno = s.cosno AND id = #{id}
+	</select>
 </mapper>

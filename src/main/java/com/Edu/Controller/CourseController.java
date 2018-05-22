@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
+import javax.mail.Session;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
@@ -408,5 +411,32 @@ public class CourseController {
 			return "redirect:/course/list";
 		}
 
+		//수강
+		@RequestMapping(value="/subscribe/{cosno}", method=RequestMethod.GET)
+		public String SubscribeCourse(@PathVariable("cosno") int cosno, HttpSession session){
+			String id = (String) session.getAttribute("id");
+			   
+			courseService.subscribe(id,cosno);
+			
+			return "redirect:/course/list";
+		}
+		
+		//내 강좌
+		@RequestMapping(value = "/mycourse", method = RequestMethod.GET)
+		public ModelAndView MyCourse( ModelAndView mav, HttpSession session){
+			
+			String id = (String) session.getAttribute("id");
+			
+			List<Course> course = courseService.mycourse(id);
+			
+			//modelandview에 정보 저장 
+			mav = new ModelAndView();
+			mav.addObject("course",course);	
+			
+			mav.setViewName("/course/mycourse");		
+			
+			return mav;
+		}
+		
 	
 }
