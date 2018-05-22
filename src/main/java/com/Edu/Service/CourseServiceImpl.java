@@ -123,6 +123,22 @@ public class CourseServiceImpl implements CourseService{
 		return courseMapper.AllfindCosList();
 	}
 
+	@Override
+	public void subscribe(String id, int cosno) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("id", id);
+		map.put("cosno", cosno);
+		
+		courseMapper.subscribe(map);
+	}
+
+	@Override
+	public List<Course> mycourse(String id) {
+		
+		return courseMapper.mycourse(id);
+	}
+
 
 	
 

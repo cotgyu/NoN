@@ -40,4 +40,8 @@ public interface CourseMapper {
 	int countCourse(Map map);
 
 	List<Course> AllfindCosList();
+
+	void subscribe(Map map);
+
+	List<Course> mycourse(String id);
 }
