@@ -43,7 +43,7 @@ $(document).ready(function() {
 						$('.modal-body').text("[" + id + "]" + "님 환영합니다.");
 						$('#exampleModal').modal('show');						
 						//location.href="index.mvc";
-						location.href="course/list";
+						location.href="/";
 					}
 					else{
 						$('.modal-header').text(' 로그인 오류 ');

@@ -115,5 +115,13 @@ public class Member {
 		this.grade = grade;
 	}
 
+	@Override
+	public String toString() {
+		return "Member [name=" + name + ", id=" + id + ", pass=" + pass + ", email=" + email + ", mobile=" + mobile
+				+ ", nick=" + nick + ", phone=" + phone + ", zipcode=" + zipcode + ", address1=" + address1
+				+ ", address2=" + address2 + ", birth=" + birth + ", gender=" + gender + ", profile_image="
+				+ profile_image + ", emailGet=" + emailGet + ", grade=" + grade + ", regDate=" + regDate + "]";
+	}
+
 
 }

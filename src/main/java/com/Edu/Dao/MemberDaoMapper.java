@@ -9,7 +9,7 @@ public interface MemberDaoMapper {
 	public Member loginCheck(String id) throws Exception;
 
 	// 닉네임 중복 체크
-	public Member nickCheck(String nick);
+	public Member idCheck(String nick);
 
 	// 멤버리스트 받아오기
 	public ArrayList<Member> getMemberList();
@@ -31,5 +31,6 @@ public interface MemberDaoMapper {
 
 	// 네이버로그인
 	public void naverlogin(Member member);
+
 
 }

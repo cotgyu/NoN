@@ -138,16 +138,14 @@ public class MemberController {
 	@RequestMapping(value = "/kakaologin", produces = "application/json", method = { RequestMethod.GET,
 			RequestMethod.POST })
 	public String kakaoLogin(@RequestParam("code") String code, HttpServletRequest request,
-			HttpServletResponse response, HttpSession session) throws Exception {
-		System.out.println("여기를 오긴 오는거야??");
+		HttpServletResponse response, HttpSession session) throws Exception {
 		
-		JsonNode token = KakaoLogin.getAccessToken(code);
-		JsonNode profile = KakaoLogin.getKakaoUserInfo(token.path("access_token").toString());
-		System.out.println(profile);
+		/*JsonNode token = KakaoLogin.getAccessToken(code);//토큰정보 갖고오는??
+		JsonNode profile = KakaoLogin.getKakaoUserInfo(token.path("access_token").toString());//프로필정보 갖고온다??
 		Member member = KakaoLogin.changeData(profile);
 		Member member1 = null;
-		System.out.println(member.getId());
-		member.setId("kakao_" + member.getId());
+		
+		member.setId("kakao_" + member.getId());//
 		member.setNick("kakao_" + member.getNick());
 
 		session.setAttribute("member", member);
@@ -155,13 +153,36 @@ public class MemberController {
 		session.setAttribute("nick", member.getNick());
 		session.setAttribute("isSns", true);
 		String nick = (String) session.getAttribute("nick");
-		System.out.println(nick);
+		
+		
 		member1 = memberService.nickCheck(nick);
-		if(member1 == null) {
+		if(member1 != null) {
 			System.out.println("중복된 사용자");
 			memberService.kakaologin(member);
 		}
-		return "redirect:main";
+		return "redirect:member/kakaoLogin";
+*/	
+		JsonNode token = KakaoLogin.getAccessToken(code);//토큰정보 갖고오는??
+		JsonNode profile = KakaoLogin.getKakaoUserInfo(token.path("access_token").toString());//프로필정보 갖고온다??
+		Member member = KakaoLogin.changeData(profile);
+		Member member1 = null;
+		
+		member.setId("kakao_" + member.getId());//멤버변수에 아이디 닉 이메일 값 설정
+		member.setNick("kakao_" + member.getNick());
+		member.setEmail("kakao_"+member.getEmail());
+		
+		session.setAttribute("member", member);//멤버객체 세션에 저장		
+		System.out.println(member);
+		session.setAttribute("id", member.getId());//멤버객체id 세선에 저장
+		String id = (String) session.getAttribute("id");//세션에 저장된 id값으로 ..
+		
+		member1 = memberService.idCheck(id);//
+		if(member1 != null) {
+			System.out.println("중복된 사용자");			
+			return "redirect:/";
+		}
+		memberService.kakaologin(member);
+		return "redirect:/";
 	}
 	
 
@@ -187,14 +208,17 @@ public class MemberController {
 		session.setAttribute("isLogin", true);
 		session.setAttribute("nick", member.getNick());
 		session.setAttribute("isSns", true);
-		String nick = (String) session.getAttribute("nick");
-		System.out.println(nick);
-		member1 = memberService.nickCheck(nick);
-		if(member1 == null) {
-			memberService.naverlogin(member);
-		}
 		
-		return "redirect:main";
+		session.setAttribute("id", member.getId());
+		String id = (String) session.getAttribute("id");
+		System.out.println(id);
+		member1 = memberService.idCheck(id);
+		if(member1 != null) {
+			System.out.println("중복된 사용자");
+			return "redirect:/";
+		}
+		memberService.naverlogin(member);
+		return "redirect:/";
 	}
 
 
