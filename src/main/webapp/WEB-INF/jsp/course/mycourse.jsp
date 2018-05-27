@@ -18,10 +18,14 @@
 		<div class="container">
 		<h3>수강 중인 강좌 리스트</h3>
 		<c:forEach var="cos" items="${course}">
-			${cos.cosname} &ensp;&ensp;  수강 취소<br>
+			<a href="/course/intro/${cos.cosno}">${cos.cosname}</a> &ensp;&ensp;  
+			<button type="button" class="btn btn-default" onClick="location.href='/course/subscribecancel/${cos.cosno}'">수강 취소</button>
+			<br>
 		</c:forEach> 
 			
-		</div>		
+		</div>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br>		
 		<%@ include file="/WEB-INF/jsp/fixedIndex/footer.jsp"%>
 	
 	</div>

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.Edu.Dao.CourseMapper;
 import com.Edu.Domain.Course;
 import com.Edu.Domain.Lecture;
+import com.Edu.Domain.Subscribe;
 
 @Service
 public class CourseServiceImpl implements CourseService{
@@ -137,6 +138,40 @@ public class CourseServiceImpl implements CourseService{
 	public List<Course> mycourse(String id) {
 		
 		return courseMapper.mycourse(id);
+	}
+
+	@Override
+	public boolean ajaxchecksubscribe(String id, int cosno) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("id", id);
+		map.put("cosno", cosno);
+		//id가 cosno를 구독하고 있는지 확인
+		Subscribe cos=  courseMapper.ajaxchecksubscribe(map);
+	
+		//체크 변수
+		boolean tf = true;
+		//번호에 맞는 코스가 나오지 않으면
+		if(cos == null){
+		 tf = false;
+		}
+		//나온다면 트루체크
+		else{
+			tf= true;
+		}
+		
+		return tf;
+	}
+
+	@Override
+	public void subscribecancel(String id, int cosno) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("id", id);
+		map.put("cosno", cosno);
+		
+		courseMapper.subscribecancel(map);
+		
 	}
 
 
