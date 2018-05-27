@@ -40,4 +40,12 @@ public interface CourseService {
 	public int countCourse(String searchOption, String keyword);
 
 	public List<Course> AllfindCosList();
+
+	public void subscribe(String id, int cosno);
+
+	public List<Course> mycourse(String id);
+
+	public boolean ajaxchecksubscribe(String id, int cosno);
+
+	public void subscribecancel(String id, int cosno);
 }

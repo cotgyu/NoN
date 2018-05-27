@@ -93,6 +93,7 @@ public class AjaxProcessController {
 				
 				//session.setAttribute("isLogin", true);
 				session.setAttribute("member", member);
+				session.setAttribute("id", member.getId());			
 				session.setAttribute("nick", member.getNick());
 				session.setAttribute("grade", member.getGrade());
 				//System.out.println("로그인성공 id = "+ id + "비밀번호 = " + pass);
