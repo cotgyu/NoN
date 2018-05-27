@@ -15,6 +15,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="/resources/indexresource/vendor/jquery/jquery.min.js"></script><!--toggle -->
   <script src="/resources/indexresource/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+ 
   </head>
 <body>
 <div id="wrapper">
@@ -29,7 +30,14 @@
 				</li>
 				<c:forEach var="lec" items="${lecturelist}">
 				<li>
-					<a href="/course/player/${lec.cosno}/${lec.lecno}">${lec.lecname}</a>
+					<a href="/course/player/${lec.cosno}/${lec.lecno}">${lec.lecname}
+					&nbsp;
+					<input type="checkbox" id="check${lec.cosno}" 
+					style=" width: 25px;
+							height: 25px;
+							border: 4px solid #bcbcbc;
+							cursor: pointer;"/>
+					</a>
 				</li>
 				
 				</c:forEach>

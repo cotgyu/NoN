@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>${course.cosname}코스</title>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
 </script>
 </head>
@@ -16,8 +17,23 @@
 		<br><br>
 		<jsp:include page="/WEB-INF/jsp/fixedIndex/menuButton.jsp" />		
 		<div class="container">
-			<h3>${course.cosname}</h3>
-			<!-- <button type="submit" id="subscribe" onclick="javascript_:openPlayer()" class="btn btn-default" >수강하기</button> -->
+			
+			<!-- 수강버튼 부분
+			todo 수강했을때 성공했다고 알람창 띄우기 -->
+			<div id="subcheck">
+			<c:if test="${not empty sessionScope.id}">	
+					<c:choose>
+						<c:when test="${checkstate == false}">					
+							<button type="button" class="btn btn-default" onClick="location.href='/course/subscribe/${course.cosno}'">수강하기</button>
+						</c:when>
+						<c:otherwise>
+							<button type="button" class="btn btn-default">수강 중</button>
+						</c:otherwise>
+					</c:choose>			
+			</c:if>
+			</div>
+			
+			<h3>${course.cosname}</h3> 
 			<div class="btn-group">
 			  <button type="button" class="btn btn-default" onClick="location.href='#intro'">강좌 소개</button>
 			  <button type="button" class="btn btn-default" onClick="location.href='#courselist'">강의리스트</button>
