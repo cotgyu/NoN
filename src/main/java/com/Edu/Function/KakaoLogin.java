@@ -26,8 +26,8 @@ public class KakaoLogin {
 		//NameValuePair 클래스의 목적은 1개의 데이터를 전달하기 위한것이므로 name/value값 하나만 저장하는 구조로 되어있다.
 		final List<NameValuePair> postParams = new ArrayList<NameValuePair>();
 		postParams.add(new BasicNameValuePair("grant_type", "authorization_code"));
-		postParams.add(new BasicNameValuePair("client_id", "686bc69fc75e50e4983e53dbd6ab30a4")); // REST API KEY
-		postParams.add(new BasicNameValuePair("redirect_uri", "http://localhost:8080/project02/kakaologin")); // 리다이렉트 URI
+		postParams.add(new BasicNameValuePair("client_id", "8fb66d14386ea24cbcd23712d1164091")); // REST API KEY
+		postParams.add(new BasicNameValuePair("redirect_uri", "http://localhost:8080/kakaologin")); // 리다이렉트 URI
 		postParams.add(new BasicNameValuePair("code", autorize_code)); // 로그인 과정중 얻은 code 값
 	
 		final HttpClient client = HttpClientBuilder.create().build(); //요청 주체
@@ -41,9 +41,9 @@ public class KakaoLogin {
 			
 			final int responseCode = response.getStatusLine().getStatusCode();
 			
-			System.out.println("\nSending 'POST' request to URL : " + RequestUrl);
-			System.out.println("Post parameters : " + postParams);
-			System.out.println("Response Code : " + responseCode);
+			//System.out.println("\nSending 'POST' request to URL : " + RequestUrl);//https://kauth.kakao.com/oauth/token
+			//System.out.println("Post parameters : " + postParams);// [grant_type=authorization_code, client_id=8fb66d14386ea24cbcd23712d1164091, redirect_uri=http://localhost:8080/kakaologin, code=AqqPHzOvR0NSqCS6S_RKXpWf9lcnJm5vhJQjDodXHAaApw0nwCZsPFUcH-nks9ECNByZcQopdkgAAAFjm1dIYw]
+			//System.out.println("Response Code : " + responseCode);//200
 
 			// JSON 형태 반환값 처리
 			ObjectMapper mapper = new ObjectMapper();
@@ -80,8 +80,8 @@ public class KakaoLogin {
 			final HttpResponse response = client.execute(post);
 			final int responseCode = response.getStatusLine().getStatusCode();
 
-			System.out.println("\nSending 'POST' request to URL : " + RequestUrl);
-			System.out.println("Response Code : " + responseCode);
+			//System.out.println("\nSending 'POST' request to URL : " + RequestUrl);//https://kapi.kakao.com/v1/user/me
+			//System.out.println("Response Code : " + responseCode);//200
 
 			// JSON 형태 반환값 처리
 			ObjectMapper mapper = new ObjectMapper();
@@ -98,10 +98,11 @@ public class KakaoLogin {
 		}
 		System.out.println("getkakaouser 메소드안에서 node를 리턴합니다 : " + returnNode);
 		return returnNode;
-
+		//returnNode내용
+		// {"kaccount_email":"hyodg90@hanmail.net","kaccount_email_verified":true,"id":781346367,"properties":{"profile_image":"http://k.kakaocdn.net/dn/AV3KW/btqlSf48chQ/FfKkQUBFr7DvhzPsdbBke1/profile_640x640s.jpg","nickname":"효동","thumbnail_image":"http://k.kakaocdn.net/dn/AV3KW/btqlSf48chQ/FfKkQUBFr7DvhzPsdbBke1/profile_110x110c.jpg"}}
 	}
 
-	public static Member changeData(JsonNode userInfo) {
+	public static Member changeData(JsonNode userInfo) {//userInfo에는 profile값이 들어온다.
 		Member member = new Member();
 
 		member.setId(userInfo.path("id").asText()); // id -> vo 넣기
@@ -116,7 +117,7 @@ public class KakaoLogin {
 		JsonNode properties = userInfo.path("properties"); // 추가정보 받아오기
 		if (properties.has("nickname"))
 			member.setNick(properties.path("nickname").asText());
-			/*vo.setUser_profileImagePath(properties.path("profile_image").asText());*/
+			member.setProfile_image(properties.path("thumbnail_image").asText());
 		return member;
 	}
 }

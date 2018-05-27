@@ -48,8 +48,8 @@ public class NaverLogin {
 		
 		if(state.equals((String)session.getAttribute("state"))) {
 			postParams.add(new BasicNameValuePair("grant_type","authorization_code"));
-			postParams.add(new BasicNameValuePair("client_id","BrtJhpWcwgKwdYd5F5xJ"));
-			postParams.add(new BasicNameValuePair("client_secret","YY1DW8SCLC"));
+			postParams.add(new BasicNameValuePair("client_id","ZxrHN8MDPizObABcEu_r"));
+			postParams.add(new BasicNameValuePair("client_secret","O1oR3F1PJi"));
 			postParams.add(new BasicNameValuePair("state",state));
 			postParams.add(new BasicNameValuePair("code",autorize_code));
 			System.out.println("state 값 이프문안으로 들어옵니다.");

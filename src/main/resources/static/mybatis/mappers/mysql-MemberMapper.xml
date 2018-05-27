@@ -8,8 +8,8 @@
 		<!-- SELECT COUNT(*) FROM member WHERE id=#{id} -->
 	</select>
 	
-	<select id="nickCheck" resultType="Member">
-		SELECT * FROM member WHERE nick=#{nick}
+	<select id="idCheck" resultType="Member">
+		SELECT * FROM member WHERE id=#{id}
 	</select>
 	
 	<insert id="joinMember" parameterType="Member" useGeneratedKeys="true" keyProperty="no">
@@ -38,12 +38,14 @@
 		WHERE id=#{id}
 	</update>
 
-	<insert id="kakao" parameterType="Member" useGeneratedKeys="true" keyProperty="no">
+	<insert id="kakaologin" parameterType="Member" useGeneratedKeys="true" keyProperty="no">
+		<!-- INSERT INTO member (id,nick,email,reg_date)
+		VALUES(#{id}, #{nick}, #{email}, SYSDATE()) -->
 		INSERT INTO member (id,nick,email,reg_date)
 		VALUES(#{id}, #{nick}, #{email}, SYSDATE())
 	</insert>
 	
-	<insert id="naver" parameterType="Member" useGeneratedKeys="true" keyProperty="no">
+	<insert id="naverlogin" parameterType="Member" useGeneratedKeys="true" keyProperty="no">
 		INSERT INTO member (id,email,nick,gender,birth,name,profile_image,reg_date)
 		VALUES(#{id},#{email},#{nick},#{gender},#{birth},#{name},#{profile_image},SYSDATE())
 	</insert>

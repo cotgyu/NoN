@@ -11,43 +11,40 @@
   <!-- Bootstrap core JavaScript -->
   <script src="/resources/indexresource/vendor/jquery/jquery.min.js"></script><!--toggle -->
   <script src="/resources/indexresource/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="/resources/js/course.js"></script>
   
-<c:set var="nick" value="${nick}" scope="session"/>
+<c:set var="member" value="${member}" scope="session"/>
 <c:set var="grade" value="${grade}" scope="session"/>
 
   <c:catch>
   	<c:choose>
-  		<c:when test="${nick eq null }">
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="/">Edu Project</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="/">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/login">로그인</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/m_register">회원가입</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">about</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  		<c:when test="${member.id eq null }">
+		  <!-- Navigation -->
+		  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+		    <div class="container">
+		      <a class="navbar-brand" href="/">Edu Project</a>
+		      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+		        <span class="navbar-toggler-icon"></span>
+		      </button>
+		      <div class="collapse navbar-collapse" id="navbarResponsive">
+		        <ul class="navbar-nav ml-auto">
+		          <li class="nav-item active">
+		            <a class="nav-link" href="/">Home
+		              <span class="sr-only">(current)</span>
+		            </a>
+		          </li>
+		          <li class="nav-item">
+		            <a class="nav-link" href="/login">로그인</a>
+		          </li>
+		          <li class="nav-item">
+		            <a class="nav-link" href="/m_register">회원가입</a>
+		          </li>
+		          <li class="nav-item">
+		            <a class="nav-link" href="#">about</a>
+		          </li>
+		        </ul>
+		      </div>
+		    </div>
+		  </nav>
   		</c:when>
   		<c:otherwise>
   			<c:choose>
@@ -66,7 +63,7 @@
 					            </a>
 					          </li>
 					          <li class="nav-item">
-					            <a class="nav-link" href="">${nick}</a>
+					            <a class="nav-link" href="">${member.nick}</a>
 					          </li>
 					          <li class="nav-item">
 					            <a class="nav-link" href="">member</a>
@@ -97,7 +94,7 @@
 					            </a>
 					          </li>
 					          <li class="nav-item">
-					            <a class="nav-link" href="">${nick}</a>
+					            <a class="nav-link" href="">${member.nick}</a>
 					          </li>
 					          <li class="nav-item">
 					            <a class="nav-link" href="/logout">logout</a>

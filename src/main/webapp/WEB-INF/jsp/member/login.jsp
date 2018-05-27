@@ -39,7 +39,7 @@
   <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> 
   
   <!-- 카카오 로그인 -->
-  <!-- <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script> -->
+  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 	<%@ include file="jsjs.jsp"%>
 </head>
@@ -81,12 +81,12 @@
 			</div>
 		</form>
 		<a
-			href="https://kauth.kakao.com/oauth/authorize?client_id=686bc69fc75e50e4983e53dbd6ab30a4&redirect_uri=http://localhost:8080/project02/kakaologin&response_type=code">
+			href="https://kauth.kakao.com/oauth/authorize?client_id=8fb66d14386ea24cbcd23712d1164091&redirect_uri=http://localhost:8080/kakaologin&response_type=code">
 			<img id="kakaoicon" src="resources/img/kakao.png">
 		</a>
-		<!-- https://nid.naver.com/oauth2.0/authorize?client_id={클라이언트 아이디}&response_type=code&redirect_uri={개발자 센터에 등록한 콜백 URL(URL 인코딩)}&state={상태 토큰} -->
+		<!-- https://nid.naver.com/oauth2.0/authorize?client_id={restApi키입력}&response_type=code&redirect_uri={개발자 센터에 등록한 콜백 URL(URL 인코딩)}&state={상태 토큰} -->
 		<a
-			href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=BrtJhpWcwgKwdYd5F5xJ&redirect_uri=http://localhost:8080/project02/naverlogin&state=${state }">
+			href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=ZxrHN8MDPizObABcEu_r&redirect_uri=http://localhost:8080/naverlogin&state=${state }">
 			<img id="navericon" src="resources/img/naver.PNG">
 		</a>
 

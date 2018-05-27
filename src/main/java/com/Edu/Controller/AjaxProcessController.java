@@ -44,7 +44,7 @@ public class AjaxProcessController {
 			}
 		}
 		else if(id == null && nick != null) {
-			member = memberService.nickCheck(nick);
+			member = memberService.idCheck(nick);
 			if(member == null) {
 				map.put("result", true);//사용가능
 			}
@@ -91,7 +91,7 @@ public class AjaxProcessController {
 		if(member !=null) {
 			if(member.getId().equals(id)&&member.getPass().equals(pass)) {
 				
-				session.setAttribute("isLogin", true);
+				//session.setAttribute("isLogin", true);
 				session.setAttribute("member", member);
 				session.setAttribute("nick", member.getNick());
 				session.setAttribute("grade", member.getGrade());

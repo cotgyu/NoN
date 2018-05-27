@@ -28,8 +28,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Member nickCheck(String nick) {
-		return memberDaoMapper.nickCheck(nick);
+	public Member idCheck(String id) {
+		return memberDaoMapper.idCheck(id);
 	}
 
 	@Override
@@ -69,6 +69,7 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		
 	}
+
 
 
 }
