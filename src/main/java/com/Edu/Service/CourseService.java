@@ -44,4 +44,8 @@ public interface CourseService {
 	public void subscribe(String id, int cosno);
 
 	public List<Course> mycourse(String id);
+
+	public boolean ajaxchecksubscribe(String id, int cosno);
+
+	public void subscribecancel(String id, int cosno);
 }

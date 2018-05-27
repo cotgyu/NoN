@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -32,7 +33,7 @@ public class CourseController {
 	
 	//cosno에 맞는 소개 페이지 관련
 	@RequestMapping(value = "/intro/{cosno}", method = RequestMethod.GET)
-	public ModelAndView Courseintro( ModelAndView mav, @PathVariable("cosno") int cosno){
+	public ModelAndView Courseintro( ModelAndView mav, @PathVariable("cosno") int cosno, HttpSession session){
 		
 		//cosno에 맞는 코스정보 불러오기
 		Course course = courseService.findCos(cosno);
@@ -40,11 +41,19 @@ public class CourseController {
 		//cosno에 맞는 강좌들 불러오기
 		List<Lecture> lecture = courseService.findCos_lec(cosno);
 		
+		//세션에서 아이디 받아오기
+		String id = (String) session.getAttribute("id");
+		
+		//수강여부 체크
+		boolean checkstate = courseService.ajaxchecksubscribe(id,cosno);
+		
 		
 		//modelandview에 정보 저장 
 		mav = new ModelAndView();
 		mav.addObject("course",course);
 		mav.addObject("lecture",lecture);
+		mav.addObject("checkstate",checkstate);
+		
 		
 		mav.setViewName("/course/introview");
 		
@@ -105,7 +114,7 @@ public class CourseController {
 		
 	//키워드 검색 리스트 
 	@RequestMapping(value = "/searchajaxlist")
-	public ModelAndView SearchajaxCourseList( ModelAndView mav, 
+	public ModelAndView SearchAjaxCourseList( ModelAndView mav, 
 			@RequestParam(defaultValue="") String keyword, 
 			@RequestParam(defaultValue="all") String searchOption,
 			@RequestParam(defaultValue="1") int curPage
@@ -418,8 +427,19 @@ public class CourseController {
 			   
 			courseService.subscribe(id,cosno);
 			
-			return "redirect:/course/list";
+			return "redirect:/course/mycourse";
 		}
+		
+		//수강취소
+		@RequestMapping(value="/subscribecancel/{cosno}", method=RequestMethod.GET)
+		public String SubscribeCancel(@PathVariable("cosno") int cosno, HttpSession session){
+			String id = (String) session.getAttribute("id");
+					   
+			courseService.subscribecancel(id,cosno);
+					
+			return "redirect:/course/mycourse";
+		}
+		
 		
 		//내 강좌
 		@RequestMapping(value = "/mycourse", method = RequestMethod.GET)
@@ -437,6 +457,8 @@ public class CourseController {
 			
 			return mav;
 		}
+		
+		
 		
 	
 }

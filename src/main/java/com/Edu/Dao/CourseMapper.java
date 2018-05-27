@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.Edu.Domain.Course;
 import com.Edu.Domain.Lecture;
+import com.Edu.Domain.Subscribe;
 
 
 public interface CourseMapper {
@@ -44,4 +45,8 @@ public interface CourseMapper {
 	void subscribe(Map map);
 
 	List<Course> mycourse(String id);
+
+	Subscribe ajaxchecksubscribe(Map map);
+
+	void subscribecancel(Map map);
 }
