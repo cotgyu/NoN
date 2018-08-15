@@ -33,6 +33,10 @@ import org.springframework.stereotype.Repository;
 */
 	public List<CommentVO> commentEva(int cosno) throws Exception;
 
+	public void commentScoreAdd(CommentVO comment) throws Exception;
+
+	public void commentScoreUpdate(CommentVO comment);
+
 }
 
 

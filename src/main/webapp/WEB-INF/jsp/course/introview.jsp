@@ -68,58 +68,56 @@
 				</c:forEach> 
 				</section>
 			<br><br><br><br><br><br>
-
+			
+			<h4>수강평</h4>
+			<c:if test="${not empty sessionScope.id}">
 			<section id="eval">
-				<h4>수강평</h4>
-				<!-- <h1><span class="evaPrint"></span></h1> -->
-			<h1><span class="evaPrint"></span></h1>
-
-	<!-- 댓글부분 -->
-	<label for="content">수강후기를 남겨주세요</label>
-		<div class="container" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">
-			<!-- <label for="content">수강후기를 남겨주세요</label> -->
-			<form name="commentInsertForm">
-				<div class="input-group">
-					<input type="hidden" name="cosno" value="${course.cosno}" /> <!-- ㅅㅂ intro.cosno에서 course.cosno로 바꿨더니 실행됨 -->
-					
-					<label class="radio-inline">
-						<input type="radio" name="eva_count" id="inlineRadio1" value="1"> 1
-					</label>
-					<label class="radio-inline">
-					  	<input type="radio" name="eva_count" id="inlineRadio2" value="2"> 2
-					</label>
-					<label class="radio-inline">
-					  <input type="radio" name="eva_count" id="inlineRadio3" value="3"> 3
-					</label>
-					<label class="radio-inline">
-					  <input type="radio" name="eva_count" id="inlineRadio4" value="4"> 4
-					</label>
-					<label class="radio-inline">
-					  <input type="radio" name="eva_count" id="inlineRadio5" value="5"> 5
-					</label>
-					
-					 
-					<div class="input-group input-group-md">
-						<input type="text" class="form-control" name="content" placeholder="평점과 내용을 입력하세요."> 
-						<span class="input-group-btn">
-							<button class="btn btn-default" type="button" name="commentInsertBtn">등록</button>
-						</span>
+				<h1><span class="evaPrint"></span></h1>
+				<!-- 댓글부분 -->
+				<label for="content">수강후기를 남겨주세요</label>
+					<div class="container" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">
+						<form name="commentInsertForm">
+							<div class="input-group">
+								<input type="hidden" name="cosno" value="${course.cosno}" /> 
+								
+								<label class="radio-inline">
+									<input type="radio" name="eva_count" id="inlineRadio1" value="1"> 1
+								</label>
+								<label class="radio-inline">
+								  	<input type="radio" name="eva_count" id="inlineRadio2" value="2"> 2
+								</label>
+								<label class="radio-inline">
+								  <input type="radio" name="eva_count" id="inlineRadio3" value="3"> 3
+								</label>
+								<label class="radio-inline">
+								  <input type="radio" name="eva_count" id="inlineRadio4" value="4"> 4
+								</label>
+								<label class="radio-inline">
+								  <input type="radio" name="eva_count" id="inlineRadio5" value="5"> 5
+								</label>
+								
+								 
+								<div class="input-group input-group-md">
+									<input type="text" class="form-control" name="content" placeholder="평점과 내용을 입력하세요."> 
+									<span class="input-group-btn">
+										<button class="btn btn-default" type="button" name="commentInsertBtn">등록</button>
+									</span>
+								</div>
+							</div>
+						</form>
 					</div>
-				</div>
-			</form>
-		</div>
-				<div class="container">
-					<div class="commentList"></div>
-				</div>
+			</section>
+			</c:if>
+			<div class="container">
+				<div class="commentList"></div>
+			</div>
 				<br><br>
-				<div class="container">
+			<div class="container">
 					<h1>이런 강의는 어떠세요??</h1>
 						<c:forEach var="num" varStatus="i" begin="0" end="4" step="1">
 							<a href ="/course/intro/${recommendList[num]}">${recommendCourseName[num]}</a>
 						</c:forEach>
-				</div>
-				
-			</section>
+			</div>		
 			<br><br><br><br><br><br>
 		</div>
 		<%@ include file="/WEB-INF/jsp/fixedIndex/footer.jsp"%>

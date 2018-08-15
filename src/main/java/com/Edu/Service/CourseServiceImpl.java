@@ -65,6 +65,9 @@ public class CourseServiceImpl implements CourseService{
 	@Override
 	public void insertCourse(Course cos) {
 		courseMapper.insertCourse(cos);
+		
+		//코스 추가할때 코스스코어도 같이 추가 
+		courseMapper.insertCourseScore(cos);
 	}
 	
 	//새로운 lecture 추가

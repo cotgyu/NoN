@@ -151,26 +151,14 @@ function commentEva(){
 				var a=0;
 				var c=0;
 				var r=0;
-			/* console.log(data); data형태 모조리 출력 */
 				$.each(data, function(key, value){ 
 					a+=value.eva_count;
 					c+=1;
 				});
 				r=a/c;
-				console.log("평점총점수"+a);
-				console.log("댓글수"+c);
-				console.log("댓글 평균 점수"+r.toFixed(2));
-				$('.evaPrint').html(c+" 개의 수강평 중 "+" "+r.toFixed(2));
-			
-			/* console.log("댓글 총 평점"+data); 
-			$('.evaPrint').html("댓글 총 평점"+data);  
-			db에서 직접 평점 계산할때....
-			*/
-				
 			
 		}
 	});
-	console.log("보자!");
 }
 
  
