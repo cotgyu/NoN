@@ -56,4 +56,23 @@
 		FROM comment
 		WHERE cosno=#{cosno}
 	</select>
+	
+	
+	
+	<update id="commentScoreAdd" parameterType="CommentVO">
+		UPDATE course_score
+		SET totalscore = totalscore + #{eva_count}
+			,totalcnt = totalcnt + 1 
+			,score = round(totalscore / totalcnt , 2)  
+		WHERE cosno=#{cosno}		 
+	</update>
+	
+	
+	
+	<update id="commentScoreUpdate" parameterType="CommentVO">
+		UPDATE course
+		SET coseval = round( (select score from course_score where cosno = #{cosno}) )
+		WHERE cosno=#{cosno}		 
+	</update>
+	
 </mapper>

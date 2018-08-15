@@ -169,4 +169,9 @@
 		FROM course where cosno = #{cosno}
 	</select>
 	
+	<!-- 코스스코어 등록 -->
+	<insert id="insertCourseScore">
+		INSERT INTO course_score (cosno) 
+		VALUES (#{cosno})
+	</insert>
 </mapper>

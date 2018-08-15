@@ -50,4 +50,9 @@ public class CommentService {
 	return mCommentMapper.commentEva(cosno);
 }
 
+public void commentScoreAdd(CommentVO comment) throws Exception{
+	mCommentMapper.commentScoreAdd(comment);
+	mCommentMapper.commentScoreUpdate(comment);
+}
+
 }
