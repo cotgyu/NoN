@@ -48,4 +48,6 @@ public interface CourseService {
 	public boolean ajaxchecksubscribe(String id, int cosno);
 
 	public void subscribecancel(String id, int cosno);
+
+	public String findCosName(int cosno);
 }

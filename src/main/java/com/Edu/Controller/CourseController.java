@@ -2,6 +2,8 @@ package com.Edu.Controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.Edu.Domain.Course;
 import com.Edu.Domain.Lecture;
 import com.Edu.Domain.Page;
+import com.Edu.Itemrecommend.*;
 import com.Edu.Service.CourseService;
 
 @Controller
@@ -47,12 +50,37 @@ public class CourseController {
 		//수강여부 체크
 		boolean checkstate = courseService.ajaxchecksubscribe(id,cosno);
 		
+		//데이터
+		DataConvert DataC = new DataConvert();
+		try {
+			DataC.Convert();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		//추천 강의리스트 뽑기
+		ItemRecommend IR = new ItemRecommend();		
+		List<String> recommendList = IR.Recommend(cosno);
+		List<String> recommendCourseName = new ArrayList<>();
+		
+		Iterator iterator = recommendList.iterator();
+		while (iterator.hasNext()) {
+			String a = (String) iterator.next();
+		    int element = Integer.parseInt(a);	    
+		    recommendCourseName.add(courseService.findCosName(element));
+		}
+
+
+	
 		
 		//modelandview에 정보 저장 
 		mav = new ModelAndView();
 		mav.addObject("course",course);
 		mav.addObject("lecture",lecture);
 		mav.addObject("checkstate",checkstate);
+		
+		mav.addObject("recommendList",recommendList);
+		mav.addObject("recommendCourseName",recommendCourseName);
 		
 		
 		mav.setViewName("/course/introview");
@@ -457,8 +485,6 @@ public class CourseController {
 			
 			return mav;
 		}
-		
-		
-		
+			
 	
 }

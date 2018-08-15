@@ -49,4 +49,6 @@ public interface CourseMapper {
 	Subscribe ajaxchecksubscribe(Map map);
 
 	void subscribecancel(Map map);
+
+	String findCosName(int cosno);
 }
