@@ -6,6 +6,10 @@ import org.apache.ibatis.type.Alias;
 import lombok.Data;
 
 
+/**
+ * @author SK
+ *
+ */
 @Alias("Course")
 public @Data class Course {
 	
@@ -59,12 +63,6 @@ public @Data class Course {
 	public void setCospicture(String cospicture) {
 		this.cospicture = cospicture;
 	}
-	public int getCoseval() {
-		return coseval;
-	}
-	public void setCoseval(int coseval) {
-		this.coseval = coseval;
-	}
 
 	public String getCoscategory1() {
 		return coscategory1;
@@ -82,12 +80,22 @@ public @Data class Course {
 		this.coscategory2 = coscategory2;
 	}
 
+	
+	public int getCoseval() {
+		return coseval;
+	}
+
+	public void setCoseval(int coseval) {
+		this.coseval = coseval;
+	}
+
 	@Override
 	public String toString() {
 		return "Course [cosno=" + cosno + ", cosname=" + cosname + ", cosintro=" + cosintro + ", cosintrovideo="
 				+ cosintrovideo + ", coscategory1=" + coscategory1 + ", coscategory2=" + coscategory2 + ", cosregtime="
 				+ cosregtime + ", cospicture=" + cospicture + ", coseval=" + coseval + "]";
 	}
+
 	
 	
 

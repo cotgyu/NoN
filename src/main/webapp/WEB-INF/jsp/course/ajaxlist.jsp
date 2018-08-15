@@ -7,7 +7,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript">
+
 </script>
+<style>
+.star{
+width:80px;
+height:16px; 
+background:url('/resources/img/star.jpg') no-repeat -80px 0;
+}
+
+.star span{
+display:block;
+height:16px; 
+background:url('/resources/img/star.jpg') no-repeat left top;
+text-indent:-9999em;
+}
+</style>
 </head>
 <body>
 <!-- 페이지 이동을 위한 옵션들 -->
@@ -41,6 +56,41 @@
 				                  <h4 class="cardZ-title">
 				                    <a href="/course/intro/${coslist.cosno}">${coslist.cosname}</a>
 				                  </h4>
+				                  
+				                  <!-- 수강평 점수 -->                
+				                  <c:choose>
+				                  	  <c:when test="${coslist.coseval == 0}">
+										  <div class='star'>
+						                  	<span style="width:0%"></span>
+						                  </div>
+									  </c:when>
+					                  <c:when test="${coslist.coseval == 1}">
+										  <div class='star'>
+						                  	<span style="width:20%"></span>
+						                  </div>
+									  </c:when>
+					                  <c:when test="${coslist.coseval == 2}">
+										  <div class='star'>
+						                  	<span style="width:40%"></span>
+						                  </div>
+									  </c:when>
+					                  <c:when test="${coslist.coseval == 3}">
+										  <div class='star'>
+						                  	<span style="width:60%"></span>
+						                  </div>
+									  </c:when>
+					                  <c:when test="${coslist.coseval == 4}">
+										  <div class='star'>
+						                  	<span style="width:80%"></span>
+						                  </div>
+									  </c:when>
+									  <c:when test="${coslist.coseval == 5}">
+										  <div class='star'>
+						                  	<span style="width:100%"></span>
+						                  </div>
+									  </c:when>               
+				                  </c:choose>
+				                  
 				                </div>
 				              </div>
 				        </div>
