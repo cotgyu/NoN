@@ -7,7 +7,6 @@ import com.Edu.Domain.Course;
 import com.Edu.Domain.Lecture;
 import com.Edu.Domain.Subscribe;
 
-
 public interface CourseMapper {
 
 	Course findCos(int cosno);
@@ -23,12 +22,14 @@ public interface CourseMapper {
 	void insertLecture(Lecture lecture);
 
 	List<Course> findCosCategory1();
+
 	List<Course> findCosCategory2();
-	
+
 	List<Course> findProgrammingCategory();
+
 	List<Course> findDesignCategory();
+
 	List<Course> findBusinessCategory();
-	
 
 	List<Course> findNewCosList();
 
@@ -51,4 +52,6 @@ public interface CourseMapper {
 	void subscribecancel(Map map);
 
 	String findCosName(int cosno);
+
+	void insertCourseScore(Course cos);
 }
