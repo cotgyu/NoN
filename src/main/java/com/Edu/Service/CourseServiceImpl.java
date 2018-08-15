@@ -174,6 +174,11 @@ public class CourseServiceImpl implements CourseService{
 		
 	}
 
+	@Override
+	public String findCosName(int cosno) {
+		return courseMapper.findCosName(cosno);
+	}
+
 
 	
 
