@@ -164,5 +164,9 @@
 	
 	</delete>
 	
+	<select id="findCosName" resultType="String">
+		SELECT cosname
+		FROM course where cosno = #{cosno}
+	</select>
 	
 </mapper>
