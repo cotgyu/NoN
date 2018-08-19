@@ -37,6 +37,8 @@ import org.springframework.stereotype.Repository;
 
 	public void commentScoreUpdate(CommentVO comment);
 
+	public void recommendCourseDataInsert(CommentVO comment);
+
 }
 
 

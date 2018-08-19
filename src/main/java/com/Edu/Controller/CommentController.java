@@ -62,6 +62,7 @@ public class CommentController {
         //comment.setWriter("test");
         Member member=(Member)session.getAttribute("member");
         comment.setWriter(member.getNick());
+        comment.setUserno(member.getUserno());
         
         mCommentService.commentScoreAdd(comment);
         

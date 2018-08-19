@@ -182,6 +182,12 @@ public class CourseServiceImpl implements CourseService{
 		return courseMapper.findCosName(cosno);
 	}
 
+	@Override
+	public void dataUpdate() {
+		courseMapper.dataUpdate();
+		
+	}
+
 
 	
 

@@ -50,4 +50,6 @@ public interface CourseService {
 	public void subscribecancel(String id, int cosno);
 
 	public String findCosName(int cosno);
+
+	public void dataUpdate();
 }
