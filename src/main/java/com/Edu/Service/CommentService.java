@@ -53,6 +53,9 @@ public class CommentService {
 public void commentScoreAdd(CommentVO comment) throws Exception{
 	mCommentMapper.commentScoreAdd(comment);
 	mCommentMapper.commentScoreUpdate(comment);
+	mCommentMapper.recommendCourseDataInsert(comment);
+	
+	
 }
 
 }

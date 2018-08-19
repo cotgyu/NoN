@@ -66,9 +66,6 @@
 					            <a class="nav-link" href="">${member.nick}</a>
 					          </li>
 					          <li class="nav-item">
-					            <a class="nav-link" href="">member</a>
-					          </li>
-					          <li class="nav-item">
 					            <a class="nav-link" href="/logout">logout</a>
 					          </li>
 					          <li class="nav-item">
