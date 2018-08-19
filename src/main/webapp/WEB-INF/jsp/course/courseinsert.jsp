@@ -41,6 +41,31 @@
 				}
 		}
 
+	function insertvalidate(){
+		if($("#cosname").val() == ''){
+			alert('코스 이름을 입력해주세요!'); 
+		  	return false;
+		}else if($("#cosintro").val() == ''){
+			alert('코스 내용 소개를 입력해주세요!'); 
+		  	return false;
+		}else if($("#cosintro").val() == ''){
+			alert('코스 내용 소개를 입력해주세요!'); 
+		  	return false;
+		}else if($("#cosintrovideo").val() == ''){
+			alert('대표 영상을 입력해주세요!'); 
+		  	return false;
+		}
+
+		
+		return true;
+	}
+
+	function insertCourse(){
+		if(insertvalidate()){
+		$("#addcourse").submit(); 
+		}
+	}
+
 	
 </script>
 <body>
@@ -104,7 +129,8 @@
 				
 				<tr>
 					<td colspan="2">
-					<input type="submit" class="btn btn-default"  value="코스 등록" /> 
+					
+					<button type="button" class="btn btn-default" onClick="javascript:insertCourse();">코스 등록하기</button>
 					<button type="button" class="btn btn-default" onClick="location.href='/course/list'">코스 목록으로</button>
 				</tr>
 			</table>

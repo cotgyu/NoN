@@ -32,7 +32,7 @@ public class ItemRecommend {
 		try {
 
 			DataModel dm = new FileDataModel(
-					new File("/C:/Users/SK/Desktop/spring_non/src/main/webapp/resources/data/movies.csv"));
+					new File("C:/MySqlOutputData/test.csv"));
 
 			// ItemSimilarity sim = new LogLikelihoodSimilarity(dm);
 
