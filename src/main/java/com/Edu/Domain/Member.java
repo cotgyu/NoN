@@ -8,6 +8,7 @@ public class Member {
 	private boolean emailGet;
 	private int grade;
 	private Timestamp regDate;
+	private int userno;
 	
 	public Member() {}
 
@@ -113,6 +114,15 @@ public class Member {
 
 	public void setGrade(int grade) {
 		this.grade = grade;
+	}
+	
+	
+	public int getUserno() {
+		return userno;
+	}
+
+	public void setUserno(int userno) {
+		this.userno = userno;
 	}
 
 	@Override

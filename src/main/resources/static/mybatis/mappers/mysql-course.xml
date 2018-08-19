@@ -174,4 +174,14 @@
 		INSERT INTO course_score (cosno) 
 		VALUES (#{cosno})
 	</insert>
+	
+	<select id="dataUpdate">
+		SELECT * FROM recommend_coursedata
+		INTO OUTFILE 'C:/MySqlOutputData/test.csv'
+		CHARACTER SET euckr
+		FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"'
+		ESCAPED BY '\\'
+		LINES TERMINATED BY '\n'
+	</select>
+	
 </mapper>

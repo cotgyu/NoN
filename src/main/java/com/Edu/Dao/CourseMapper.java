@@ -54,4 +54,6 @@ public interface CourseMapper {
 	String findCosName(int cosno);
 
 	void insertCourseScore(Course cos);
+
+	void dataUpdate();
 }

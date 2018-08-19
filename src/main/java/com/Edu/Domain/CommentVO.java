@@ -15,7 +15,7 @@ public @Data class CommentVO {
 	private String content;
 	private String writer;
 	private String reg_date;
-	
+	private int userno;
 
 	public int getEva_count() {
 		return eva_count;
@@ -63,6 +63,14 @@ public @Data class CommentVO {
 
 	public void setReg_date(String reg_date) {
 		this.reg_date = reg_date;
+	}
+
+	public int getUserno() {
+		return userno;
+	}
+
+	public void setUserno(int userno) {
+		this.userno = userno;
 	}
 
 	

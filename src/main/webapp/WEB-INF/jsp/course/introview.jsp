@@ -115,7 +115,7 @@
 			<div class="container">
 					<h1>이런 강의는 어떠세요??</h1>
 						<c:forEach var="num" varStatus="i" begin="0" end="4" step="1">
-							<a href ="/course/intro/${recommendList[num]}">${recommendCourseName[num]}</a>
+							<a href ="/course/intro/${recommendList[num]}">${recommendCourseName[num]}</a><br>
 						</c:forEach>
 			</div>		
 			<br><br><br><br><br><br>

@@ -75,4 +75,11 @@
 		WHERE cosno=#{cosno}		 
 	</update>
 	
+
+	<insert id="recommendCourseDataInsert">
+		INSERT INTO
+		recommend_coursedata (userno,cosno,userscore) 
+		VALUES(#{userno},#{cosno},#{eva_count})
+	</insert>
+	
 </mapper>

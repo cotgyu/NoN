@@ -40,9 +40,11 @@ function commentList(){
                 /* a += '<fmt:formatDate value="${'+value.reg_date+'}" pattern="yyyy.MM.dd HH:mm:ss"/>; //test날짜포맷 */
               	/*  a += '<a onclick="commentUpdate('+value.cno+',\''+value.content+'\');"> 수정 </a>'; //댓글 수정 */ 
               	 /* a += '<a onclick="commentUpdate('+value.cno+',\''+value.content+'\','+value.eva_count+');"> 수정 </a>'; //댓글 수정 new  */ 
+              	if(value.writer == "<%=(String)session.getAttribute("nick")%>"){
               	a += '<a onclick="commentUpdate('+value.cno+',\''+value.content+'\','+value.eva_count+');"> 수정 </a>'; //댓글 수정 new 2
               	 //a += '<a onclick="commentUpdate(value.cno, value.content);"> 수정 </a>'; //댓글 수정 이부분 이해 잘안감...
                 a += '<a onclick="commentDelete('+value.cno+');"> 삭제 </a> </div>'; //댓글 삭제
+              	}
                 a += '<div class="commentContent'+value.cno+'"> <p> 내용 : '+value.content +'</p><p>평점 :'+value.eva_count+'</p>'; //댓글평점 추가 내용 */
                 /* a += '<div class="commentContent'+value.cno+'"> <p> 내용 : '+value.content +'</p>'; //댓글 내용 */
                 a += '</div></div>';
